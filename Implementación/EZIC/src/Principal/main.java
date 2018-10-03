@@ -5,6 +5,8 @@
  */
 package Principal;
 
+import Conexion.Conexion;
+
 /**
  *
  * @author jorgeantoniogarciagomez
@@ -15,8 +17,10 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Home h = new Home();
-       h.show();
+        //LoginNuevo LN = new LoginNuevo();
+        //LN.show();
+        Conexion mCon = new Conexion();
+        mCon.conectar();
     }
-    
+
 }

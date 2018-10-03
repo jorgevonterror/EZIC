@@ -5,6 +5,8 @@
  */
 package Principal;
 
+import Conexion.Conexion;
+
 /**
  *
  * @author jorgeantoniogarciagomez

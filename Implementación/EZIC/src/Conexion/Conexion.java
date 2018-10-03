@@ -5,10 +5,12 @@
  */
 package Conexion;
 
+import Principal.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +29,7 @@ public class Conexion {
                 //JOptionPane.showMessageDialog(null, "Conectado");
                 return true;
             } else {
-                //JOptionPane.showMessageDialog(null, "NO Conectado");
+                JOptionPane.showMessageDialog(null, "NO Conectado");
                 return false;
             }
         } catch (Exception e) {
@@ -41,6 +43,36 @@ public class Conexion {
             this.conexion.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
+    }
+    
+    public boolean GuardarUser(User mUser) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("INSERT INTO Login (Username, Nombre, Pass, Tipo)"
+                    + "VALUES('" + mUser.getUsername() +"'," + 
+                    "'" + mUser.getNombre() + "'," +
+                    "'" + mUser.getPass() + "'," +
+                    "'" + mUser.getTipo() + "');");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+        public Boolean ExisteUser(User mUser) {
+        Statement consulta;
+        //
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("SELECT Username FROM Login WHERE Username = '"
+                     + mUser.getUsername() + "';");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
