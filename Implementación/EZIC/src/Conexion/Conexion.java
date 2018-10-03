@@ -64,7 +64,6 @@ public class Conexion {
     
         public Boolean ExisteUser(User mUser) {
         Statement consulta;
-        //
         try {
             consulta = conexion.createStatement();
             consulta.execute("SELECT Username FROM Login WHERE Username = '"
@@ -73,6 +72,31 @@ public class Conexion {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }
+        } 
+    }
+        
+        public Boolean ExisteLogin(User mUser) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("SELECT Username FROM Login WHERE Username = '"
+                     + mUser.getUsername() + "';");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } 
+    }
+        public Boolean ExisteLoginPass(User mUser) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("SELECT Nombre FROM Login WHERE (Pass = "
+                     + mUser.getPass() + " AND Username = '" + mUser.getUsername() + "');");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } 
     }
 }
