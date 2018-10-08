@@ -209,7 +209,7 @@ public class LoginNuevo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "BIENVENIDO ");
                     this.hide();
                     Home mH = new Home();
-                    mH.show();
+                    mH.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "USUARIO INCORRECTO");
                 }
