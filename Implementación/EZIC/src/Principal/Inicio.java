@@ -270,7 +270,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
         // TODO add your handling code here:
         try{
-            //Desktop.getDesktop().browse(new URI("https://www.cloudhq.net/s/94ef609937"));
+            Desktop.getDesktop().browse(new URI("https://www.cloudhq.net/s/94ef609937"));
         }catch(Exception e){
 
         }
@@ -279,7 +279,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jLabel15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MousePressed
         // TODO add your handling code here:
         try{
-            //Desktop.getDesktop().browse(new URI("https://www.cloudhq.net/s/94ef609937"));
+            Desktop.getDesktop().browse(new URI("https://www.cloudhq.net/s/94ef609937"));
         }catch(Exception e){
 
         }
