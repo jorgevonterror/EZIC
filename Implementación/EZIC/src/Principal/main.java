@@ -21,6 +21,8 @@ public class main {
         //LN.show();
         Conexion mCon = new Conexion();
         mCon.conectar();
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
     }
 
 }
