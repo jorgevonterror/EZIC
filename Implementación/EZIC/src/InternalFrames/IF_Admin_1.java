@@ -30,11 +30,30 @@ public class IF_Admin_1 extends javax.swing.JInternalFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jTabbedPane5 = new javax.swing.JTabbedPane();
+        jTabbedPane6 = new javax.swing.JTabbedPane();
+        jTabbedPane7 = new javax.swing.JTabbedPane();
         jTabbedPane3 = new javax.swing.JTabbedPane();
+        jTabbedPane8 = new javax.swing.JTabbedPane();
+        jTabbedPane9 = new javax.swing.JTabbedPane();
+        jTabbedPane10 = new javax.swing.JTabbedPane();
+        jTabbedPane11 = new javax.swing.JTabbedPane();
 
         setBorder(null);
 
+        jTabbedPane2.addTab("Alta", jTabbedPane4);
+        jTabbedPane2.addTab("Baja", jTabbedPane5);
+        jTabbedPane2.addTab("Cambios", jTabbedPane6);
+        jTabbedPane2.addTab("Consulta", jTabbedPane7);
+
         jTabbedPane1.addTab("Gestion Docentes", jTabbedPane2);
+
+        jTabbedPane3.addTab("Alta", jTabbedPane8);
+        jTabbedPane3.addTab("Baja", jTabbedPane9);
+        jTabbedPane3.addTab("Cambios", jTabbedPane10);
+        jTabbedPane3.addTab("Consulta", jTabbedPane11);
+
         jTabbedPane1.addTab("Gestion Alumnos", jTabbedPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -54,7 +73,15 @@ public class IF_Admin_1 extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane10;
+    private javax.swing.JTabbedPane jTabbedPane11;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTabbedPane jTabbedPane6;
+    private javax.swing.JTabbedPane jTabbedPane7;
+    private javax.swing.JTabbedPane jTabbedPane8;
+    private javax.swing.JTabbedPane jTabbedPane9;
     // End of variables declaration//GEN-END:variables
 }
