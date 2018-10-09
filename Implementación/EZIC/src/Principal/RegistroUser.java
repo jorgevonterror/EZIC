@@ -63,7 +63,6 @@ public class RegistroUser extends javax.swing.JFrame {
         jLabel3.setText("User");
 
         TxtUser.setBackground(new java.awt.Color(255, 204, 204));
-        TxtUser.setSelectedTextColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -150,7 +149,6 @@ public class RegistroUser extends javax.swing.JFrame {
         jLabel6.setText("Nombre");
 
         TxtNombre.setBackground(new java.awt.Color(255, 204, 204));
-        TxtNombre.setSelectedTextColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -173,7 +171,7 @@ public class RegistroUser extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Usuario" }));
+        ComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Docente", "Usuario" }));
         ComboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboTipoActionPerformed(evt);
