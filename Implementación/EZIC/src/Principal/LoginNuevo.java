@@ -95,6 +95,11 @@ public class LoginNuevo extends javax.swing.JFrame {
         jLabel4.setText("Pass");
 
         TxtPassword.setBackground(new java.awt.Color(255, 204, 204));
+        TxtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtPasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -204,7 +209,7 @@ public class LoginNuevo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "BIENVENIDO ");
                     this.hide();
                     Home mH = new Home();
-                    mH.show();
+                    mH.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "USUARIO INCORRECTO");
                 }
@@ -218,6 +223,10 @@ public class LoginNuevo extends javax.swing.JFrame {
         RegistroUser mRU = new RegistroUser();
         mRU.show();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void TxtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
