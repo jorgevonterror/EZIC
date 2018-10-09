@@ -205,11 +205,11 @@ public class LoginNuevo extends javax.swing.JFrame {
                 mUser.setUsername(this.TxtUser.getText());
                 mUser.setPass(this.TxtPassword.getText());
                 
-                if (mCon.ExisteLoginPass(mUser)) {
+                if (mCon.ExisteLogin(mUser)) {
                     JOptionPane.showMessageDialog(rootPane, "BIENVENIDO ");
                     this.hide();
                     Home mH = new Home();
-                    mH.show();
+                    mH.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "USUARIO INCORRECTO");
                 }
