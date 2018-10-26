@@ -42,6 +42,7 @@ public class FRM_Asesor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -110,6 +111,21 @@ public class FRM_Asesor extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Bienvenido Asesor");
 
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Cerrar sesión");
+        jLabel7.setToolTipText("Presione para salir");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jLabel7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel7KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -117,7 +133,8 @@ public class FRM_Asesor extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(311, 311, 311)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,6 +142,9 @@ public class FRM_Asesor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -281,16 +301,16 @@ public class FRM_Asesor extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        FRM_Inicio mFRM_Inicio = new FRM_Inicio();
-        mFRM_Inicio.setVisible(true);
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
         dispose();
         //System.exit(0);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel5KeyPressed
         // TODO add your handling code here:
-        FRM_Inicio mFRM_Inicio = new FRM_Inicio();
-        mFRM_Inicio.setVisible(true);
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
         dispose();
         //System.exit(0);
     }//GEN-LAST:event_jLabel5KeyPressed
@@ -338,6 +358,20 @@ public class FRM_Asesor extends javax.swing.JFrame {
         resetColor(new JPanel[]{btn_1}, new JPanel[]{ind_1});
     }//GEN-LAST:event_btn_8MouseReleased
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel7KeyPressed
+        // TODO add your handling code here:
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel7KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -383,6 +417,7 @@ public class FRM_Asesor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

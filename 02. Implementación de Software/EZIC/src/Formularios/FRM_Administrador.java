@@ -29,6 +29,11 @@ public class FRM_Administrador extends javax.swing.JFrame {
         
         //Acomodamos el formulario en el centro.
         this.setLocationRelativeTo(null);
+        IF_GestionAlumnos mIFGA = new IF_GestionAlumnos();
+        IF_GestionAsesores mIFGAs = new IF_GestionAsesores();
+        this.Escritorio.add(mIFGA);
+        mIFGA.show();
+        mIFGAs.hide();
     }
 
     /**
@@ -46,6 +51,7 @@ public class FRM_Administrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -125,6 +131,21 @@ public class FRM_Administrador extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Bienvenido Administrador");
 
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Cerrar sesión");
+        jLabel7.setToolTipText("Presione para salir");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jLabel7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel7KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -132,7 +153,8 @@ public class FRM_Administrador extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(245, 245, 245)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +162,9 @@ public class FRM_Administrador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -465,16 +490,16 @@ public class FRM_Administrador extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:       
-        FRM_Inicio mFRM_Inicio = new FRM_Inicio();
-        mFRM_Inicio.setVisible(true);
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
         dispose();
         //System.exit(0);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel5KeyPressed
         // TODO add your handling code here:
-        FRM_Inicio mFRM_Inicio = new FRM_Inicio();
-        mFRM_Inicio.setVisible(true);
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
         dispose();
         //System.exit(0);
     }//GEN-LAST:event_jLabel5KeyPressed
@@ -517,9 +542,11 @@ public class FRM_Administrador extends javax.swing.JFrame {
         
         IF_GestionAlumnos mIFGA = new IF_GestionAlumnos();
         IF_GestionAsesores mIFGAs = new IF_GestionAsesores();
+        IF_AsignacionAsesores mIFAA = new IF_AsignacionAsesores();
         this.Escritorio.add(mIFGAs);
         mIFGAs.show();
         mIFGA.hide();
+        mIFAA.hide();
     }//GEN-LAST:event_btn_8MousePressed
 
     private void btn_8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_8MouseReleased
@@ -530,9 +557,11 @@ public class FRM_Administrador extends javax.swing.JFrame {
         
         IF_GestionAlumnos mIFGA = new IF_GestionAlumnos();
         IF_GestionAsesores mIFGAs = new IF_GestionAsesores();
+        IF_AsignacionAsesores mIFAA = new IF_AsignacionAsesores();
         this.Escritorio.add(mIFGAs);
         mIFGAs.show();
         mIFGA.hide();
+        mIFAA.hide();
     }//GEN-LAST:event_btn_8MouseReleased
 
     private void btn_4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MousePressed
@@ -565,6 +594,14 @@ public class FRM_Administrador extends javax.swing.JFrame {
         setColor(btn_3);
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_1,btn_4,btn_8,btn_2}, new JPanel[]{ind_1,ind_4,ind_8,ind_2});
+        
+        IF_GestionAlumnos mIFGA = new IF_GestionAlumnos();       
+        IF_GestionAsesores mIFGAs = new IF_GestionAsesores();
+        IF_AsignacionAsesores mIFAA = new IF_AsignacionAsesores();
+        this.Escritorio.add(mIFAA);
+        mIFGAs.hide();
+        mIFGA.hide();
+        mIFAA.show();
     }//GEN-LAST:event_btn_3MouseReleased
 
     private void btn_3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MouseClicked
@@ -578,6 +615,20 @@ public class FRM_Administrador extends javax.swing.JFrame {
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MousePressed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel7KeyPressed
+        // TODO add your handling code here:
+        LoginNuevo mLN = new LoginNuevo();
+        mLN.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel7KeyPressed
 
     /**
      * @param args the command line arguments
@@ -610,6 +661,7 @@ public class FRM_Administrador extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FRM_Administrador().setVisible(true);
+                
             }
         });
     }
@@ -634,6 +686,7 @@ public class FRM_Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
