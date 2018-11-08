@@ -113,7 +113,7 @@ public class LoginNuevo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        BtnEntrar.setBackground(new java.awt.Color(255, 102, 102));
+        BtnEntrar.setBackground(new java.awt.Color(153, 153, 255));
         BtnEntrar.setText("Entrar");
         BtnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
