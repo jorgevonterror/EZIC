@@ -10,6 +10,7 @@ package Conexiones;
  * @author eduardogarcia
  */
 
+import Clases.Asesor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -45,4 +46,35 @@ public class ConexionKevin {
             System.err.println(e.getMessage());
         }
     }
+    
+        public boolean AltaAsesor(Asesor mAsesor) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Asesor "
+                    + "values (null, "
+                    + "'" + mAsesor.getNombre() + "',"
+                    + "'" + mAsesor.getPuesto() + "',"
+                    + "'" + mAsesor.getEmp_Inst() + "');");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean eliminarAsesor(Asesor mAsesor) {
+        Statement consulta;
+
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("delete from Asesor "
+                    + " where idAsesor = " + mAsesor.getId_Asesor()+ ";");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
 }

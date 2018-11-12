@@ -21,6 +21,7 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
      * Creates new form IF_GestionAsesores
      */
     ConexionEduardo mCE = new ConexionEduardo();
+    ConexionKevin mCK = new ConexionKevin();
     DefaultTableModel Tabla = new DefaultTableModel();  //para cambios
     DefaultTableModel TablaAlta = new DefaultTableModel();
     DefaultTableModel TablaBaja = new DefaultTableModel();
@@ -624,7 +625,7 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
                     mAsesor.setNombre(TXTnom.getText());
                     mAsesor.setPuesto(TXTpuesto.getText());
                     mAsesor.setEmp_Inst(TXTemp_inst.getText());
-                    if (mCE.AltaAsesor(mAsesor)) {
+                    if (mCK.AltaAsesor(mAsesor)) {
                         JOptionPane.showMessageDialog(null, "Asesor agregado exitosamente");
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al guardar Asesor");
@@ -694,7 +695,7 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
             if (mCE.conectar()) {
                 if (ValidarCajaNombreBaja()) {
                     mAsesor.setId_Asesor(ID_AsesorBaja);
-                    if (mCE.eliminarAsesor(mAsesor)) {
+                    if (mCK.eliminarAsesor(mAsesor)) {
                         JOptionPane.showMessageDialog(null, "Asesor dado de baja exitosamente");
                     } else {
                         JOptionPane.showMessageDialog(null, "Este Asesor tiene relación con otros registros");

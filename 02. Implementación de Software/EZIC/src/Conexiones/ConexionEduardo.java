@@ -253,36 +253,6 @@ public class ConexionEduardo {
         }
     }
     
-    public boolean AltaAsesor(Asesor mAsesor) {
-        Statement consulta;
-        try {
-            consulta = conexion.createStatement();
-            consulta.execute("insert into Asesor "
-                    + "values (null, "
-                    + "'" + mAsesor.getNombre() + "',"
-                    + "'" + mAsesor.getPuesto() + "',"
-                    + "'" + mAsesor.getEmp_Inst() + "');");
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    
-    public boolean eliminarAsesor(Asesor mAsesor) {
-        Statement consulta;
-
-        try {
-            consulta = conexion.createStatement();
-            consulta.execute("delete from Asesor "
-                    + " where idAsesor = " + mAsesor.getId_Asesor()+ ";");
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    
     public ArrayList ConsultaCarreraEstudiantes() {
         ArrayList mListaCarreras = new ArrayList();
         Statement consulta;
