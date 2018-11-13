@@ -60,6 +60,7 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
             TablaConsulta.addColumn("Nombre");
             TablaConsulta.addColumn("Puesto");
             TablaConsulta.addColumn("Institucion");
+            TXTnom3.setEditable(false);
     }
 
     /**
@@ -621,7 +622,7 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
         //text = text.replaceAll(" ", "");
         if (text.length() != 0 && text.length() <= 35) {
             if (ValidarCajaNombreAlta() && ValidarCajaPuestoAlta() && ValidarCajaInstitucionAlta()) {
-                if (mCE.conectar()) {
+                if (mCK.conectar()) {
                     mAsesor.setNombre(TXTnom.getText());
                     mAsesor.setPuesto(TXTpuesto.getText());
                     mAsesor.setEmp_Inst(TXTemp_inst.getText());
@@ -692,7 +693,7 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
         String text = TXTnom3.getText();
         text = text.replaceAll(" ", "");
         if (text.length() != 0 && text.length() <= 35) {
-            if (mCE.conectar()) {
+            if (mCK.conectar()) {
                 if (ValidarCajaNombreBaja()) {
                     mAsesor.setId_Asesor(ID_AsesorBaja);
                     if (mCK.eliminarAsesor(mAsesor)) {
