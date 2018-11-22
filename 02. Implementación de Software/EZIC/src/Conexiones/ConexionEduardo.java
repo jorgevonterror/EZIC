@@ -452,12 +452,12 @@ public class ConexionEduardo {
         return IDAlumno;
     }
     
-    public boolean ModificarDocumentos(int idDocumento, int idExpediente, int idEstudiante) {
+    public boolean ModificarDocumentos(int idDocumento, int idExpediente, int idEstudiante, String Status) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
             consulta.execute("update Documento set " +
-                    "Expediente_idExpediente = '" + idExpediente + "', Estudiante_idEstudiante = '" + idEstudiante  +  "' where idDocumento = '"+ idDocumento +"';");
+                    "Expediente_idExpediente = '" + idExpediente + "', Estudiante_idEstudiante = '" + idEstudiante  +  "', Status= '" + Status +"' where idDocumento = '"+ idDocumento +"';");
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e);

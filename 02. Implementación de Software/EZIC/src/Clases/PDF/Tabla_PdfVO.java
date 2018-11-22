@@ -14,7 +14,7 @@ public class Tabla_PdfVO {
 
     public void visualizar_PdfVO(JTable tabla) {
         JTable setDefaultRenderer;
-        setDefaultRenderer = tabla.setDefaultRenderer(Object.class, new imgTabla());
+        //setDefaultRenderer = tabla.setDefaultRenderer(Object.class, new imgTabla());
         DefaultTableModel dt = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {

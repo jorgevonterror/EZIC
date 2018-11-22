@@ -1,4 +1,4 @@
-package Tabla;
+package Clases.PDF;
 
 import java.awt.Component;
 import javax.swing.JButton;

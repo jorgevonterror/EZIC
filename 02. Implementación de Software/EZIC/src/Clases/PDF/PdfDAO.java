@@ -53,7 +53,7 @@ public class PdfDAO {
     /*Metodo agregar*/
     public void Agregar_PdfVO(PdfVO vo) {
         Conectar conec = new Conectar();
-        String sql = "INSERT INTO Documento (idDocumento, Titulo, Tipo, Contenido, Expediente_idExpediente, Estudiante_idEstudiante) VALUES(null, ?, ?, ?, null, null);";
+        String sql = "INSERT INTO Documento (idDocumento, Titulo, Tipo, Contenido, Expediente_idExpediente, Estudiante_idEstudiante, Status) VALUES(null, ?, ?, ?, null, null, null);";
         PreparedStatement ps = null;
         try {
             ps = conec.getConnection().prepareStatement(sql);

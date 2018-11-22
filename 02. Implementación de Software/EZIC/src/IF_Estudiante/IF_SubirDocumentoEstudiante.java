@@ -37,6 +37,7 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
     String Titulo = "";
     String Tipo = "";
     int idDocumento = 0;
+    String Status = "";
     public int idExpediente = 0;
     public int idEstudiante = 0;
     public int idUltimoDoc = 0;
@@ -200,7 +201,8 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
                 idExpediente = mCE.ConsultarIDExpediente(CB_Expedientes.getSelectedItem().toString());
                 idEstudiante = mCE.ConsultarIDAlumnos(CB_Estudiantes.getSelectedItem().toString());
                 idUltimoDoc = mCE.ConsultarIDUltimoDoc();
-                mCE.ModificarDocumentos(idUltimoDoc, idExpediente, idEstudiante);
+                Status = "No revisado";
+                mCE.ModificarDocumentos(idUltimoDoc, idExpediente, idEstudiante, Status);
                 mCE.desconectar();
             } else {
                 JOptionPane.showMessageDialog(null, "Conectar con la Base de Datos");
