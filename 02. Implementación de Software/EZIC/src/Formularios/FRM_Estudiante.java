@@ -5,6 +5,8 @@
  */
 package Formularios;
 
+import IF_Estudiante.*;
+import Clases.PDF.*;
 import java.awt.Color;
 import javax.swing.JPanel;
 
@@ -19,6 +21,17 @@ public class FRM_Estudiante extends javax.swing.JFrame {
      */
     public FRM_Estudiante() {
         initComponents();
+        setColor(btn_1); 
+        ind_1.setOpaque(true);
+        resetColor(new JPanel[]{btn_1, btn_8}, new JPanel[]{ind_1, ind_8});
+        
+        //Acomodamos el formulario en el centro.
+        this.setLocationRelativeTo(null);
+        IF_SubirDocumentoEstudiante mSDE = new IF_SubirDocumentoEstudiante();
+        IF_VerDescargarDocEstudiante mVDDE = new IF_VerDescargarDocEstudiante();
+        this.Escritorio.add(mVDDE);
+        mVDDE.show();
+        mSDE.hide();
     }
 
     /**
@@ -44,6 +57,7 @@ public class FRM_Estudiante extends javax.swing.JFrame {
         btn_8 = new javax.swing.JPanel();
         ind_8 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        Escritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,11 +286,17 @@ public class FRM_Estudiante extends javax.swing.JFrame {
 
         side_pane.add(btn_8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 240, 60));
 
+        Escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        Escritorio.setSize(new java.awt.Dimension(645, 619));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 861, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(244, Short.MAX_VALUE)
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +306,10 @@ public class FRM_Estudiante extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(95, Short.MAX_VALUE)
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,7 +327,7 @@ public class FRM_Estudiante extends javax.swing.JFrame {
         // TODO add your handling code here:
         LoginNuevo mLN = new LoginNuevo();
         mLN.setVisible(true);
-        dispose();
+        dispose();       
         //System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
 
@@ -342,14 +365,38 @@ public class FRM_Estudiante extends javax.swing.JFrame {
         setColor(btn_1);
         ind_1.setOpaque(true);
         resetColor(new JPanel[]{btn_8}, new JPanel[]{ind_8});
+        
+        IF_SubirDocumentoEstudiante mSDE = new IF_SubirDocumentoEstudiante();
+        IF_VerDescargarDocEstudiante mVDDE = new IF_VerDescargarDocEstudiante();
+        this.Escritorio.add(mVDDE);
+        mVDDE.show();
+        mSDE.hide();      
     }//GEN-LAST:event_btn_1MousePressed
 
     private void btn_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MouseClicked
         // TODO add your handling code here:
+        setColor(btn_1);
+        ind_1.setOpaque(true);
+        resetColor(new JPanel[]{btn_8}, new JPanel[]{ind_8});
+        
+        IF_SubirDocumentoEstudiante mSDE = new IF_SubirDocumentoEstudiante();
+        IF_VerDescargarDocEstudiante mVDDE = new IF_VerDescargarDocEstudiante();
+        this.Escritorio.add(mVDDE);
+        mVDDE.show();
+        mSDE.hide();
     }//GEN-LAST:event_btn_1MouseClicked
 
     private void btn_8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_8MousePressed
         // TODO add your handling code here:
+        setColor(btn_8);
+        ind_8.setOpaque(true);
+        resetColor(new JPanel[]{btn_1}, new JPanel[]{ind_1});
+        
+        IF_SubirDocumentoEstudiante mSDE = new IF_SubirDocumentoEstudiante();
+        IF_VerDescargarDocEstudiante mVDDE = new IF_VerDescargarDocEstudiante();
+        this.Escritorio.add(mSDE);
+        mSDE.show();
+        mVDDE.hide(); 
     }//GEN-LAST:event_btn_8MousePressed
 
     private void btn_8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_8MouseReleased
@@ -357,6 +404,12 @@ public class FRM_Estudiante extends javax.swing.JFrame {
         setColor(btn_8);
         ind_8.setOpaque(true);
         resetColor(new JPanel[]{btn_1}, new JPanel[]{ind_1});
+        
+        IF_SubirDocumentoEstudiante mSDE = new IF_SubirDocumentoEstudiante();
+        IF_VerDescargarDocEstudiante mVDDE = new IF_VerDescargarDocEstudiante();
+        this.Escritorio.add(mSDE);
+        mSDE.show();
+        mVDDE.hide();  
     }//GEN-LAST:event_btn_8MouseReleased
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -409,6 +462,7 @@ public class FRM_Estudiante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JPanel btn_1;
     private javax.swing.JPanel btn_8;
     private javax.swing.JPanel ind_1;

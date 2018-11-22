@@ -366,4 +366,103 @@ public class ConexionEduardo {
         }
         return IDAsesor;
     }
+    
+    //Para Alta de documentos
+    public ArrayList ConsultaNombreExpedientes() {
+        ArrayList mListaExpedientes = new ArrayList();
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select Nombre from Expediente;");
+            while (resultado.next()) {
+                mListaExpedientes.add(resultado.getString("Nombre"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaExpedientes;
+    }
+    public int ConsultarIDExpediente(String NombreExpediente) {
+        Statement consulta;
+        ResultSet resultado;
+        int IDAsesor = 0;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT idExpediente from Expediente where Nombre = '" + NombreExpediente + "';");
+            while (resultado.next()) {
+                IDAsesor = resultado.getInt("idExpediente");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return IDAsesor;
+    }
+    
+    public ArrayList ConsultarAlumnosEspecificosConAsig() {
+        ArrayList mListaAlumnos = new ArrayList();
+
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT * from Estudiante where Asesor_idAsesor is not null;");
+            while (resultado.next()) {
+                mListaAlumnos.add(resultado.getString("Nombre"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaAlumnos;
+    }
+    public int ConsultarIDAlumnos(String NombreAlumno) {
+        Statement consulta;
+        ResultSet resultado;
+        int IDAlumno = 0;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT idEstudiante from Estudiante where Nombre = '" + NombreAlumno + "';");
+            while (resultado.next()) {
+                IDAlumno = resultado.getInt("idEstudiante");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return IDAlumno;
+    }
+    
+    public int ConsultarIDUltimoDoc() {
+        Statement consulta;
+        ResultSet resultado;
+        int IDAlumno = 0;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select idDocumento from Documento order by idDocumento DESC limit 1;");
+            while (resultado.next()) {
+                IDAlumno = resultado.getInt("idDocumento");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return IDAlumno;
+    }
+    
+    public boolean ModificarDocumentos(int idDocumento, int idExpediente, int idEstudiante) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("update Documento set " +
+                    "Expediente_idExpediente = '" + idExpediente + "', Estudiante_idEstudiante = '" + idEstudiante  +  "' where idDocumento = '"+ idDocumento +"';");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
+            return false;
+        }
+    }
+    //Hasta Aqui para Alta de Documentos
 }
