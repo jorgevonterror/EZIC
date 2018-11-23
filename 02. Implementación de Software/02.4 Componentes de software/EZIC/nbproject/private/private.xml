@@ -4,6 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+            <file>file:/Users/eduardogarcia/Documents/EZIC/02.%20Implementación%20de%20Software/EZIC/src/IF_Estudiante/IF_SubirDocumentoEstudiante.java</file>
+            <file>file:/Users/eduardogarcia/Documents/EZIC/02.%20Implementación%20de%20Software/EZIC/src/main.java</file>
+=======
+<<<<<<< HEAD
             <file>file:/Users/manzana/EZIC/02.%20Implementación%20de%20Software/EZIC/src/Formularios/FRM_Login.java</file>
             <file>file:/Users/manzana/EZIC/02.%20Implementación%20de%20Software/EZIC/src/Formularios/FRM_Estudiante.java</file>
 =======
@@ -12,6 +16,7 @@
             <file>file:/Users/eduardogarcia/Documents/EZIC/02.%20Implementación%20de%20Software/EZIC/src/Clases/PDF/Tabla_PdfVO.java</file>
             <file>file:/Users/eduardogarcia/Documents/EZIC/02.%20Implementación%20de%20Software/EZIC/src/Clases/PDF/imgTabla.java</file>
 >>>>>>> ba21a06daae76b6829eef8d3ed05f01a438b3c28
+>>>>>>> e7087e15fbff62f5e66e08a11f8f34b26c0961f6
         </group>
     </open-files>
 </project-private>
