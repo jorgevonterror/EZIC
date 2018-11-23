@@ -325,7 +325,7 @@ public class FRM_Estudiante extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        LoginNuevo mLN = new LoginNuevo();
+        FRM_Login mLN = new FRM_Login();
         mLN.setVisible(true);
         dispose();       
         //System.exit(0);
@@ -333,7 +333,7 @@ public class FRM_Estudiante extends javax.swing.JFrame {
 
     private void jLabel6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel6KeyPressed
         // TODO add your handling code here:
-        LoginNuevo mLN = new LoginNuevo();
+        FRM_Login mLN = new FRM_Login();
         mLN.setVisible(true);
         dispose();
         //System.exit(0);
@@ -414,14 +414,14 @@ public class FRM_Estudiante extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        LoginNuevo mLN = new LoginNuevo();
+        FRM_Login mLN = new FRM_Login();
         mLN.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel7KeyPressed
         // TODO add your handling code here:
-        LoginNuevo mLN = new LoginNuevo();
+        FRM_Login mLN = new FRM_Login();
         mLN.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel7KeyPressed
