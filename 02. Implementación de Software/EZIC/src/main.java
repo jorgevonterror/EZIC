@@ -1,5 +1,5 @@
 
-import Formularios.LoginNuevo;
+import Formularios.FRM_Login;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +19,7 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        LoginNuevo mLN = new LoginNuevo();
+        FRM_Login mLN = new FRM_Login();
         mLN.setVisible(true);
     }
     
