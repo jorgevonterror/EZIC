@@ -1,128 +1,255 @@
--- -----------------------------------------------------
--- Table `BD_EZIC`.`Login`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BD_EZIC`.`Login` (
-  `idLogin` INT NOT NULL AUTO_INCREMENT,
-  `Alias` VARCHAR(45) NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Contraseña` VARCHAR(45) NOT NULL,
-  `Tipo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idLogin`))
-ENGINE = InnoDB;
+-- phpMyAdmin SQL Dump
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Nov 26, 2018 at 04:45 PM
+-- Server version: 5.7.21
+-- PHP Version: 7.2.7
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
--- -----------------------------------------------------
--- Table `BD_EZIC`.`Estudiante`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BD_EZIC`.`Estudiante` (
-  `NC` VARCHAR(45) NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Carrera` VARCHAR(45) NOT NULL,
-  `Login_idLogin` INT NOT NULL,
-  `Semestre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`NC`),
-  INDEX `fk_Estudiante_Login1_idx` (`Login_idLogin` ASC),
-  CONSTRAINT `fk_Estudiante_Login1`
-    FOREIGN KEY (`Login_idLogin`)
-    REFERENCES `BD_EZIC`.`Login` (`idLogin`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Database: `BD_EZIC`
+--
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `BD_EZIC`.`Asesor`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BD_EZIC`.`Asesor` (
-  `idAsesor` INT NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Puesto` VARCHAR(45) NOT NULL,
-  `Emp_Inst` VARCHAR(45) NOT NULL,
-  `Login_idLogin` INT NOT NULL,
-  PRIMARY KEY (`idAsesor`),
-  INDEX `fk_Asesor_Login1_idx` (`Login_idLogin` ASC),
-  CONSTRAINT `fk_Asesor_Login1`
-    FOREIGN KEY (`Login_idLogin`)
-    REFERENCES `BD_EZIC`.`Login` (`idLogin`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Table structure for table `Admin`
+--
 
+CREATE TABLE `Admin` (
+  `idAdmin` int(11) NOT NULL,
+  `Nombre` varchar(45) NOT NULL,
+  `Puesto` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- -----------------------------------------------------
--- Table `BD_EZIC`.`Admin`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BD_EZIC`.`Admin` (
-  `idAdmin` INT NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Puesto` VARCHAR(45) NOT NULL,
-  `Login_idLogin` INT NOT NULL,
-  PRIMARY KEY (`idAdmin`),
-  INDEX `fk_Admin_Login1_idx` (`Login_idLogin` ASC),
-  CONSTRAINT `fk_Admin_Login1`
-    FOREIGN KEY (`Login_idLogin`)
-    REFERENCES `BD_EZIC`.`Login` (`idLogin`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `Asesor`
+--
 
--- -----------------------------------------------------
--- Table `BD_EZIC`.`Expediente`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BD_EZIC`.`Expediente` (
-  `Folio` VARCHAR(45) NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `NC` VARCHAR(45) NOT NULL,
-  `Asesor_idAsesor` INT NOT NULL,
-  PRIMARY KEY (`Folio`),
-  INDEX `fk_Expediente_Estudiante1_idx` (`NC` ASC),
-  INDEX `fk_Expediente_Asesor1_idx` (`Asesor_idAsesor` ASC),
-  CONSTRAINT `fk_Expediente_Estudiante1`
-    FOREIGN KEY (`NC`)
-    REFERENCES `BD_EZIC`.`Estudiante` (`NC`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Expediente_Asesor1`
-    FOREIGN KEY (`Asesor_idAsesor`)
-    REFERENCES `BD_EZIC`.`Asesor` (`idAsesor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+CREATE TABLE `Asesor` (
+  `idAsesor` int(11) NOT NULL,
+  `Nombre` varchar(45) NOT NULL,
+  `Puesto` varchar(45) NOT NULL,
+  `Emp_Inst` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Asesor`
+--
 
--- -----------------------------------------------------
--- Table `BD_EZIC`.`Documento`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BD_EZIC`.`Documento` (
-  `idDocumento` INT NOT NULL AUTO_INCREMENT,
-  `Titulo` VARCHAR(45) NOT NULL,
-  `Tipo` VARCHAR(45) NOT NULL,
-  `Contenido` BLOB NOT NULL,
-  `Folio` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idDocumento`),
-  INDEX `fk_Documento_Expediente1_idx` (`Folio` ASC),
-  CONSTRAINT `fk_Documento_Expediente1`
-    FOREIGN KEY (`Folio`)
-    REFERENCES `BD_EZIC`.`Expediente` (`Folio`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+INSERT INTO `Asesor` (`idAsesor`, `Nombre`, `Puesto`, `Emp_Inst`) VALUES
+(1, 'Eduardo', 'Docente', 'ITSZN');
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `BD_EZIC`.`Evaluacion`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BD_EZIC`.`Evaluacion` (
-  `idEvaluacion` INT NOT NULL AUTO_INCREMENT,
-  `Criterios` VARCHAR(45) NOT NULL,
-  `Puntaje` DECIMAL(3) NOT NULL,
-  `Folio` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idEvaluacion`),
-  INDEX `fk_Evaluacion_Expediente1_idx` (`Folio` ASC),
-  CONSTRAINT `fk_Evaluacion_Expediente1`
-    FOREIGN KEY (`Folio`)
-    REFERENCES `BD_EZIC`.`Expediente` (`Folio`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Table structure for table `Documento`
+--
+
+CREATE TABLE `Documento` (
+  `idDocumento` int(11) NOT NULL,
+  `Titulo` varchar(45) NOT NULL,
+  `Tipo` varchar(45) NOT NULL,
+  `Contenido` longblob NOT NULL,
+  `Expediente_idExpediente` int(11) DEFAULT NULL,
+  `Estudiante_idEstudiante` int(11) DEFAULT NULL,
+  `Status` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Estudiante`
+--
+
+CREATE TABLE `Estudiante` (
+  `idEstudiante` int(11) NOT NULL,
+  `Nombre` varchar(45) NOT NULL,
+  `Carrera` varchar(45) NOT NULL,
+  `Expediente_idExpediente` int(11) DEFAULT NULL,
+  `Asesor_idAsesor` int(11) DEFAULT NULL,
+  `NC` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Estudiante`
+--
+
+INSERT INTO `Estudiante` (`idEstudiante`, `Nombre`, `Carrera`, `Expediente_idExpediente`, `Asesor_idAsesor`, `NC`) VALUES
+(1, 'Jorge', 'ISC', NULL, 1, ''),
+(2, 'Kevin', 'ISC', NULL, NULL, '140203');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Evaluacion`
+--
+
+CREATE TABLE `Evaluacion` (
+  `idEvaluacion` int(11) NOT NULL,
+  `Criterios` varchar(45) NOT NULL,
+  `Puntaje` decimal(3,0) NOT NULL,
+  `Expediente_idExpediente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Expediente`
+--
+
+CREATE TABLE `Expediente` (
+  `idExpediente` int(11) NOT NULL,
+  `Folio` varchar(45) NOT NULL,
+  `Nombre` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Login`
+--
+
+CREATE TABLE `Login` (
+  `idLogin` int(11) NOT NULL,
+  `Username` varchar(45) NOT NULL,
+  `Nombre` varchar(45) NOT NULL,
+  `Pass` varchar(45) NOT NULL,
+  `Tipo` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Login`
+--
+
+INSERT INTO `Login` (`idLogin`, `Username`, `Nombre`, `Pass`, `Tipo`) VALUES
+(1, 'Kev', 'Kevin', '1234K', 'Estudiante'),
+(2, 'Chendo', 'Eduardo', '1234C', 'Administrador'),
+(3, 'Jorge', 'Jorge', '1234J', 'Asesor');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Admin`
+--
+ALTER TABLE `Admin`
+  ADD PRIMARY KEY (`idAdmin`);
+
+--
+-- Indexes for table `Asesor`
+--
+ALTER TABLE `Asesor`
+  ADD PRIMARY KEY (`idAsesor`);
+
+--
+-- Indexes for table `Documento`
+--
+ALTER TABLE `Documento`
+  ADD PRIMARY KEY (`idDocumento`),
+  ADD KEY `fk_Documento_Expediente1_idx` (`Expediente_idExpediente`),
+  ADD KEY `fk_Documento_Estudiante1_idx` (`Estudiante_idEstudiante`);
+
+--
+-- Indexes for table `Estudiante`
+--
+ALTER TABLE `Estudiante`
+  ADD PRIMARY KEY (`idEstudiante`),
+  ADD KEY `fk_Estudiante_Expediente1_idx` (`Expediente_idExpediente`),
+  ADD KEY `fk_Estudiante_Asesor1_idx` (`Asesor_idAsesor`);
+
+--
+-- Indexes for table `Evaluacion`
+--
+ALTER TABLE `Evaluacion`
+  ADD PRIMARY KEY (`idEvaluacion`),
+  ADD KEY `fk_Evaluacion_Expediente1_idx` (`Expediente_idExpediente`);
+
+--
+-- Indexes for table `Expediente`
+--
+ALTER TABLE `Expediente`
+  ADD PRIMARY KEY (`idExpediente`);
+
+--
+-- Indexes for table `Login`
+--
+ALTER TABLE `Login`
+  ADD PRIMARY KEY (`idLogin`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Admin`
+--
+ALTER TABLE `Admin`
+  MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Asesor`
+--
+ALTER TABLE `Asesor`
+  MODIFY `idAsesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `Documento`
+--
+ALTER TABLE `Documento`
+  MODIFY `idDocumento` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Estudiante`
+--
+ALTER TABLE `Estudiante`
+  MODIFY `idEstudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `Evaluacion`
+--
+ALTER TABLE `Evaluacion`
+  MODIFY `idEvaluacion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Expediente`
+--
+ALTER TABLE `Expediente`
+  MODIFY `idExpediente` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Login`
+--
+ALTER TABLE `Login`
+  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Documento`
+--
+ALTER TABLE `Documento`
+  ADD CONSTRAINT `fk_Documento_Estudiante1` FOREIGN KEY (`Estudiante_idEstudiante`) REFERENCES `Estudiante` (`idEstudiante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Documento_Expediente1` FOREIGN KEY (`Expediente_idExpediente`) REFERENCES `Expediente` (`idExpediente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `Estudiante`
+--
+ALTER TABLE `Estudiante`
+  ADD CONSTRAINT `fk_Estudiante_Asesor1` FOREIGN KEY (`Asesor_idAsesor`) REFERENCES `Asesor` (`idAsesor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Estudiante_Expediente1` FOREIGN KEY (`Expediente_idExpediente`) REFERENCES `Expediente` (`idExpediente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `Evaluacion`
+--
+ALTER TABLE `Evaluacion`
+  ADD CONSTRAINT `fk_Evaluacion_Expediente1` FOREIGN KEY (`Expediente_idExpediente`) REFERENCES `Expediente` (`idExpediente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
