@@ -36,6 +36,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
         //Para el alta de Estudiantes
             TablaAltaEst.addColumn("Nombre");
             TablaAltaEst.addColumn("Carrera");
+            TablaAltaEst.addColumn("Número Control");
             BuscarTodosEstudiantes();
             
         //Para el alta de Estudiantes
@@ -77,6 +78,8 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         TXTnombreAlta = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        TXTnc = new javax.swing.JTextField();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         BTNborrar = new javax.swing.JButton();
@@ -119,21 +122,24 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Nombre:");
 
+        jLabel1.setText("Número Control:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
+                        .addComponent(jLabel1)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TXTnc, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TXTcarreraAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TXTnombreAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                            .addComponent(TXTnombreAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(6, 6, 6)
@@ -152,7 +158,11 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                 .addComponent(TXTnombreAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(TXTcarreraAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(TXTnc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,6 +454,11 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
     public boolean ValidarCajaCarreraAltaEst() {
         return !TXTcarreraAlta.getText().equals("");
     }
+    
+    public boolean validarNC() {
+        return !TXTnc.getText().equals("");
+    }
+    
     public void BuscarTodosEstudiantes() {
         TablaAltaEst = (DefaultTableModel) TBLaltaEstudiantes.getModel();
         int a = TablaAltaEst.getRowCount() - 1;
@@ -458,9 +473,10 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < mArrayListEstudiantes.size(); i++) {
                     mEstudiante = (Estudiante) mArrayListEstudiantes.get(i);
-                    Datos = new String[2];
+                    Datos = new String[3];
                     Datos[0] = mEstudiante.getNombre();
                     Datos[1] = mEstudiante.getCarrera();
+                    Datos[2] = mEstudiante.getNC();
                     TablaAltaEst.addRow(Datos);
                 }
 
@@ -471,6 +487,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             this.TBLaltaEstudiantes.setModel(TablaAltaEst);
             this.TBLaltaEstudiantes.getColumnModel().getColumn(0).setPreferredWidth(50);
             this.TBLaltaEstudiantes.getColumnModel().getColumn(1).setPreferredWidth(50);
+            this.TBLaltaEstudiantes.getColumnModel().getColumn(2).setPreferredWidth(100);
             if (this.TBLaltaEstudiantes.getRowCount() > 0) {
                 this.TBLaltaEstudiantes.setRowSelectionInterval(0, 0);
             }
@@ -483,7 +500,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
     }
     public void AltaEstudiante() {
         try {
-
+                Estudiante mEstudiante = new Estudiante();
                 String texto = TXTnombreAlta.getText();
                 String texto2 = TXTcarreraAlta.getText();
                 texto = texto.replaceAll(" ", "");
@@ -492,14 +509,18 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                 if ((((texto.length() == 0) || (texto.length() >= 150)) && ((texto2.length() == 0) || (texto2.length() >= 150)))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos correctamente");
             } else {*/
-                if ((ValidarCajaNombreAltaEst() && ValidarCajaCarreraAltaEst())) {
+                if ((ValidarCajaNombreAltaEst() && ValidarCajaCarreraAltaEst() && validarNC())) {
                     if (mCC.conectar()) {
-                        if (mCC.AltaEstudianteBasico(TXTnombreAlta.getText(), TXTcarreraAlta.getText())) {
+                        mEstudiante.setNombre(TXTnombreAlta.getText());
+                        mEstudiante.setCarrera(TXTcarreraAlta.getText());
+                        mEstudiante.setNC(TXTnc.getText());
+                        if (mCC.AltaEstudianteBasico(mEstudiante)) {
                             JOptionPane.showMessageDialog(null, "El estudiante fue guardado con éxito");
                             //CBasesorAlta.setSelectedIndex(0);
                             //CBexpedienteAlta.setSelectedIndex(0);
                             TXTnombreAlta.setText("");
                             TXTcarreraAlta.setText("");
+                            TXTnc.setText("");
                         } else {
                             JOptionPane.showMessageDialog(null, "Error al guardar al estudiante");
                         }
@@ -809,10 +830,12 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTable TBLcambiosEstudiantes;
     private javax.swing.JTextField TXTcarreraAlta;
     private javax.swing.JTextField TXTcarreraCambios;
+    private javax.swing.JTextField TXTnc;
     private javax.swing.JTextField TXTnombreAlta;
     private javax.swing.JTextField TXTnombreCambios;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
