@@ -29,34 +29,37 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
     DefaultTableModel TablaCambioEst = new DefaultTableModel();
     DefaultTableModel TablaConsultaEst = new DefaultTableModel();
     int ID_BajaEst = 0, ID_CambioEst = 0;
-    
+
     public IF_GestionAlumnos() {
         initComponents();
-        
+
         //Para el alta de Estudiantes
-            TablaAltaEst.addColumn("Nombre");
-            TablaAltaEst.addColumn("Carrera");
-            TablaAltaEst.addColumn("Número Control");
-            BuscarTodosEstudiantes();
-            
+        TablaAltaEst.addColumn("Nombre");
+        TablaAltaEst.addColumn("Carrera");
+        TablaAltaEst.addColumn("Número Control");
+        BuscarTodosEstudiantes();
+
         //Para el alta de Estudiantes
-            TablaBajaEst.addColumn("ID");
-            TablaBajaEst.addColumn("Nombre");
-            TablaBajaEst.addColumn("Carrera");
-            BuscarTodosEstudiantesBaja();
-            
+        //TablaBajaEst.addColumn("ID");
+        TablaBajaEst.addColumn("Nombre");
+        TablaBajaEst.addColumn("Carrera");
+        TablaBajaEst.addColumn("Número de Control");
+        BuscarTodosEstudiantesBaja();
+
         //Para el cambio de Estudiantes
-            TablaCambioEst.addColumn("ID");
-            TablaCambioEst.addColumn("Nombre");
-            TablaCambioEst.addColumn("Carrera");
-            BuscarTodosEstudiantesCambio();
-            
+        //TablaCambioEst.addColumn("ID");
+        TablaCambioEst.addColumn("Nombre");
+        TablaCambioEst.addColumn("Carrera");
+        TablaCambioEst.addColumn("Número de Control");
+        BuscarTodosEstudiantesCambio();
+
         //Para la consulta de Estudiantes
-            TablaConsultaEst.addColumn("Nombre");
-            TablaConsultaEst.addColumn("Carrera");
-            LlenarComboCarrera();
-            LlenarComboAsesor();
-            BuscarTodosEstudiantesCambio();
+        TablaConsultaEst.addColumn("Nombre");
+        TablaConsultaEst.addColumn("Carrera");
+        TablaConsultaEst.addColumn("Número de Control");
+        LlenarComboCarrera();
+        LlenarComboAsesor();
+        BuscarTodosEstudiantesCambio();
     }
 
     /**
@@ -389,7 +392,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
         // TODO add your handling code here:
         AltaEstudiante();
@@ -422,7 +425,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
     private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
         // TODO add your handling code here:
         ModificarEstudiantes();
-        
+
     }//GEN-LAST:event_BTNmodificarActionPerformed
 
     private void TXTcarreraCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTcarreraCambiosActionPerformed
@@ -447,18 +450,18 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
         BuscarTodosAlumnos();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-
     public boolean ValidarCajaNombreAltaEst() {
         return !TXTnombreAlta.getText().equals("");
     }
+
     public boolean ValidarCajaCarreraAltaEst() {
         return !TXTcarreraAlta.getText().equals("");
     }
-    
+
     public boolean validarNC() {
         return !TXTnc.getText().equals("");
     }
-    
+
     public void BuscarTodosEstudiantes() {
         TablaAltaEst = (DefaultTableModel) TBLaltaEstudiantes.getModel();
         int a = TablaAltaEst.getRowCount() - 1;
@@ -474,6 +477,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                 for (int i = 0; i < mArrayListEstudiantes.size(); i++) {
                     mEstudiante = (Estudiante) mArrayListEstudiantes.get(i);
                     Datos = new String[3];
+
                     Datos[0] = mEstudiante.getNombre();
                     Datos[1] = mEstudiante.getCarrera();
                     Datos[2] = mEstudiante.getNC();
@@ -498,51 +502,52 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
         mCC.desconectar();
     }
+
     public void AltaEstudiante() {
         try {
-                Estudiante mEstudiante = new Estudiante();
-                String texto = TXTnombreAlta.getText();
-                String texto2 = TXTcarreraAlta.getText();
-                texto = texto.replaceAll(" ", "");
-                texto2 = texto2.replaceAll(" ", "");
-                /*
+            Estudiante mEstudiante = new Estudiante();
+            String texto = TXTnombreAlta.getText();
+            String texto2 = TXTcarreraAlta.getText();
+            texto = texto.replaceAll(" ", "");
+            texto2 = texto2.replaceAll(" ", "");
+            /*
                 if ((((texto.length() == 0) || (texto.length() >= 150)) && ((texto2.length() == 0) || (texto2.length() >= 150)))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos correctamente");
             } else {*/
-                if ((ValidarCajaNombreAltaEst() && ValidarCajaCarreraAltaEst() && validarNC())) {
-                    if (mCC.conectar()) {
-                        mEstudiante.setNombre(TXTnombreAlta.getText());
-                        mEstudiante.setCarrera(TXTcarreraAlta.getText());
-                        mEstudiante.setNC(TXTnc.getText());
-                        if (mCC.AltaEstudianteBasico(mEstudiante)) {
-                            JOptionPane.showMessageDialog(null, "El estudiante fue guardado con éxito");
-                            //CBasesorAlta.setSelectedIndex(0);
-                            //CBexpedienteAlta.setSelectedIndex(0);
-                            TXTnombreAlta.setText("");
-                            TXTcarreraAlta.setText("");
-                            TXTnc.setText("");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Error al guardar al estudiante");
-                        }
-                        mCC.desconectar();
-                        BuscarTodosEstudiantes();
-                        BuscarTodosEstudiantesBaja();
-                        BuscarTodosEstudiantesCambio();
-                        LlenarComboCarrera();
-                        LlenarComboAsesor();
+            if ((ValidarCajaNombreAltaEst() && ValidarCajaCarreraAltaEst() && validarNC())) {
+                if (mCC.conectar()) {
+                    mEstudiante.setNombre(TXTnombreAlta.getText());
+                    mEstudiante.setCarrera(TXTcarreraAlta.getText());
+                    mEstudiante.setNC(TXTnc.getText());
+                    if (mCC.AltaEstudianteBasico(mEstudiante)) {
+                        JOptionPane.showMessageDialog(null, "El estudiante fue guardado con éxito");
+                        //CBasesorAlta.setSelectedIndex(0);
+                        //CBexpedienteAlta.setSelectedIndex(0);
                         TXTnombreAlta.setText("");
                         TXTcarreraAlta.setText("");
+                        TXTnc.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al guardar al estudiante");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos correctamente");
+                    mCC.desconectar();
+                    BuscarTodosEstudiantes();
+                    BuscarTodosEstudiantesBaja();
+                    BuscarTodosEstudiantesCambio();
+                    LlenarComboCarrera();
+                    LlenarComboAsesor();
+                    TXTnombreAlta.setText("");
+                    TXTcarreraAlta.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos correctamente");
                 //}
 
             }
-            } catch (HeadlessException | NumberFormatException e) {
-                JOptionPane.showMessageDialog(null,"POR FAVOR, LLENE BIEN LOS DATOS");
-            }
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "POR FAVOR, LLENE BIEN LOS DATOS");
+        }
     }
-    
+
     public void BajaEstudiante() {
         try {
             if (mCC.conectar()) {
@@ -567,6 +572,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "ERROR, Seleccione un estudiante");
         }
     }
+
     public void BuscarTodosEstudiantesBaja() {
         TablaBajaEst = (DefaultTableModel) TBLbajaEstudiantes.getModel();
         int a = TablaBajaEst.getRowCount() - 1;
@@ -582,9 +588,10 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                 for (int i = 0; i < mArrayListEstudiantes.size(); i++) {
                     mEstudiante = (Estudiante) mArrayListEstudiantes.get(i);
                     Datos = new String[3];
-                    Datos[0] = String.valueOf(mEstudiante.getId_Estudiante());
-                    Datos[1] = mEstudiante.getNombre();
-                    Datos[2] = mEstudiante.getCarrera();
+                    //Datos[0] = String.valueOf(mEstudiante.getId_Estudiante());
+                    Datos[0] = mEstudiante.getNombre();
+                    Datos[1] = mEstudiante.getCarrera();
+                    Datos[2] = mEstudiante.getNC();
                     TablaBajaEst.addRow(Datos);
                 }
 
@@ -596,6 +603,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             this.TBLbajaEstudiantes.getColumnModel().getColumn(0).setPreferredWidth(50);
             this.TBLbajaEstudiantes.getColumnModel().getColumn(1).setPreferredWidth(50);
             this.TBLbajaEstudiantes.getColumnModel().getColumn(2).setPreferredWidth(50);
+            //this.TBLbajaEstudiantes.getColumnModel().getColumn(3).setPreferredWidth(50);
             if (this.TBLbajaEstudiantes.getRowCount() > 0) {
                 this.TBLbajaEstudiantes.setRowSelectionInterval(0, 0);
             }
@@ -606,7 +614,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
         mCC.desconectar();
     }
-    
+
     public void BuscarTodosEstudiantesCambio() {
         TablaCambioEst = (DefaultTableModel) TBLcambiosEstudiantes.getModel();
         int a = TablaCambioEst.getRowCount() - 1;
@@ -622,9 +630,12 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                 for (int i = 0; i < mArrayListEstudiantes.size(); i++) {
                     mEstudiante = (Estudiante) mArrayListEstudiantes.get(i);
                     Datos = new String[3];
-                    Datos[0] = String.valueOf(mEstudiante.getId_Estudiante());
-                    Datos[1] = mEstudiante.getNombre();
-                    Datos[2] = mEstudiante.getCarrera();
+
+                    //Datos[0] = String.valueOf(mEstudiante.getId_Estudiante());
+                    Datos[0] = mEstudiante.getNombre();
+                    Datos[1] = mEstudiante.getCarrera();
+                    Datos[2] = mEstudiante.getNC();
+
                     TablaCambioEst.addRow(Datos);
                 }
 
@@ -636,6 +647,8 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             this.TBLcambiosEstudiantes.getColumnModel().getColumn(0).setPreferredWidth(50);
             this.TBLcambiosEstudiantes.getColumnModel().getColumn(1).setPreferredWidth(50);
             this.TBLcambiosEstudiantes.getColumnModel().getColumn(2).setPreferredWidth(50);
+            //this.TBLcambiosEstudiantes.getColumnModel().getColumn(3).setPreferredWidth(50);
+
             if (this.TBLcambiosEstudiantes.getRowCount() > 0) {
                 this.TBLcambiosEstudiantes.setRowSelectionInterval(0, 0);
             }
@@ -646,6 +659,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
         mCC.desconectar();
     }
+
     public void ModificarEstudiantes() {
         Estudiante nEstudiante = new Estudiante();
 
@@ -677,24 +691,26 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al llenar campos");
                 }
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Error al conectar con la Base de Datos");
             }
             mCC.desconectar();
-            
+
         }
         BuscarTodosEstudiantes();
         BuscarTodosEstudiantesBaja();
         BuscarTodosEstudiantesCambio();
     }
+
     public boolean ValidarCajaNombreCambioEst() {
         return !TXTnombreCambios.getText().equals("");
     }
+
     public boolean ValidarCajaCarreraCambioEst() {
         return !TXTcarreraCambios.getText().equals("");
     }
-    
+
     public void BuscarTodosAlumnos() {
         TablaConsultaEst = (DefaultTableModel) TBAlumnos.getModel();
         int a = TablaConsultaEst.getRowCount() - 1;
@@ -709,10 +725,11 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < mArrayListAlumnos.size(); i++) {
                     mEstudiante = (Estudiante) mArrayListAlumnos.get(i);
-                    Datos = new String[2];
+                    Datos = new String[3];
                     //ID_Asesor = mAsesor.getID_Asesor();
                     Datos[0] = mEstudiante.getNombre();
                     Datos[1] = mEstudiante.getCarrera();
+                    Datos[2] = mEstudiante.getNC();
                     TablaConsultaEst.addRow(Datos);
                 }
 
@@ -723,6 +740,8 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             this.TBAlumnos.setModel(TablaConsultaEst);
             this.TBAlumnos.getColumnModel().getColumn(0).setPreferredWidth(50);
             this.TBAlumnos.getColumnModel().getColumn(1).setPreferredWidth(50);
+            this.TBAlumnos.getColumnModel().getColumn(2).setPreferredWidth(50);
+
             if (this.TBAlumnos.getRowCount() > 0) {
                 this.TBAlumnos.setRowSelectionInterval(0, 0);
             }
@@ -733,6 +752,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
         mCE.desconectar();
     }
+
     public void LlenarComboCarrera() {
         CBCarreraCons.removeAllItems();
         CBCarreraCons.addItem("Ninguno");
@@ -754,11 +774,12 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No conectado a la BD");
         }
     }
+
     public void LlenarComboAsesor() {
         CBAsesorCons.removeAllItems();
         CBAsesorCons.addItem("Sin asesor");
         CBAsesorCons.addItem("Cualquiera");
-        
+
         if (mCE.conectar()) {
             ArrayList mArrayList = new ArrayList();
             mArrayList = mCE.ConsultaAsesorEstudiantes();
@@ -776,6 +797,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No conectado a la BD");
         }
     }
+
     public void BuscarAlumnosEspecificos() {
         TablaConsultaEst = (DefaultTableModel) TBAlumnos.getModel();
         int a = TablaConsultaEst.getRowCount() - 1;
@@ -785,16 +807,17 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
         if (mCE.conectar()) {
             ArrayList mArrayListAlumnos = new ArrayList();
             int IDAsesor = mCE.ConsultaIDAsesor(CBAsesorCons.getSelectedItem().toString());
-            mArrayListAlumnos = mCE.ConsultarAlumnos(IDAsesor, CBCarreraCons.getSelectedItem().toString(), CBAsesorCons.getSelectedItem().toString());
+            mArrayListAlumnos = mCE.ConsultarAlumnos(IDAsesor, CBCarreraCons.getSelectedItem().toString(), CBAsesorCons.getSelectedItem().toString(), mEstudiante.getNC());
             String[] Datos = null;
             if (mArrayListAlumnos != null) {
 
                 for (int i = 0; i < mArrayListAlumnos.size(); i++) {
                     mEstudiante = (Estudiante) mArrayListAlumnos.get(i);
-                    Datos = new String[2];
+                    Datos = new String[3];
                     //ID_Asesor = mAsesor.getID_Asesor();
                     Datos[0] = mEstudiante.getNombre();
                     Datos[1] = mEstudiante.getCarrera();
+                    Datos[2] = mEstudiante.getNC();
                     //Datos[2] = 
                     TablaConsultaEst.addRow(Datos);
                 }
@@ -806,6 +829,7 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
             this.TBAlumnos.setModel(TablaConsultaEst);
             this.TBAlumnos.getColumnModel().getColumn(0).setPreferredWidth(50);
             this.TBAlumnos.getColumnModel().getColumn(1).setPreferredWidth(50);
+            this.TBAlumnos.getColumnModel().getColumn(2).setPreferredWidth(50);
             if (this.TBAlumnos.getRowCount() > 0) {
                 this.TBAlumnos.setRowSelectionInterval(0, 0);
             }
@@ -816,8 +840,8 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
 
         mCE.desconectar();
     }
-      
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNalta;
     private javax.swing.JButton BTNborrar;
