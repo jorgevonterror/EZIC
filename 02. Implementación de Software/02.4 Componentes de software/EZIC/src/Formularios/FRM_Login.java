@@ -18,6 +18,7 @@ public class FRM_Login extends javax.swing.JFrame {
     User mUser = new User();
     ConexionLuis mCL = new ConexionLuis();
     String Tipo = "";
+    public static String Usuario;
 
     public FRM_Login() {
         initComponents();
@@ -191,10 +192,11 @@ public class FRM_Login extends javax.swing.JFrame {
                 mUser.setUsername(this.TxtUser.getText());
                 mUser.setPass(this.TxtPassword.getText());
                 Tipo = mCL.ConsultaTipoUsuario(TxtUser.getText(), TxtPassword.getText());
-                JOptionPane.showMessageDialog(rootPane, Tipo);
+                //JOptionPane.showMessageDialog(rootPane, Tipo);
                 if (mCL.ExisteLogin(mUser) && "Administrador".equals(Tipo)) {
                     //Administrador
                     JOptionPane.showMessageDialog(rootPane, "BIENVENIDO ");
+                    Usuario = TxtUser.getText();
                     this.hide();
                     FRM_Administrador mFRM_Administrador = new FRM_Administrador();
                     mFRM_Administrador.setVisible(true);
@@ -202,6 +204,7 @@ public class FRM_Login extends javax.swing.JFrame {
                     if (mCL.ExisteLogin(mUser) && "Estudiante".equals(Tipo)) {
                         //Estudiante
                         JOptionPane.showMessageDialog(rootPane, "BIENVENIDO ");
+                        Usuario = TxtUser.getText();
                         this.hide();
                         FRM_Estudiante mFRM_Estudiante = new FRM_Estudiante();
                         mFRM_Estudiante.setVisible(true);
@@ -209,6 +212,7 @@ public class FRM_Login extends javax.swing.JFrame {
                         if (mCL.ExisteLogin(mUser) && "Asesor".equals(Tipo)) {
                             //Asesor
                             JOptionPane.showMessageDialog(rootPane, "BIENVENIDO ");
+                            Usuario = TxtUser.getText();
                             this.hide();
                             FRM_Asesor mFRM_Asesor = new FRM_Asesor();
                             mFRM_Asesor.setVisible(true);

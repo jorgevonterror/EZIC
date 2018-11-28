@@ -520,6 +520,8 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                     mEstudiante.setCarrera(TXTcarreraAlta.getText());
                     mEstudiante.setNC(TXTnc.getText());
                     if (mCC.AltaEstudianteBasico(mEstudiante)) {
+                        mCC.AltaEstudianteLogin(mEstudiante);
+                        mCC.AltaEstudianteExpediente(mEstudiante);
                         JOptionPane.showMessageDialog(null, "El estudiante fue guardado con éxito");
                         //CBasesorAlta.setSelectedIndex(0);
                         //CBexpedienteAlta.setSelectedIndex(0);

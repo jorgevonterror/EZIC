@@ -420,14 +420,14 @@ public class ConexionEduardo {
         }
         return mListaAlumnos;
     }
-    public int ConsultarIDAlumnos(String NombreAlumno) {
+    public int ConsultarIDAlumnos(String NC) {
         Statement consulta;
         ResultSet resultado;
         int IDAlumno = 0;
 
         try {
             consulta = conexion.createStatement();
-            resultado = consulta.executeQuery("SELECT idEstudiante from Estudiante where Nombre = '" + NombreAlumno + "';");
+            resultado = consulta.executeQuery("SELECT idEstudiante from Estudiante where NC = '" + NC + "';");
             while (resultado.next()) {
                 IDAlumno = resultado.getInt("idEstudiante");
             }

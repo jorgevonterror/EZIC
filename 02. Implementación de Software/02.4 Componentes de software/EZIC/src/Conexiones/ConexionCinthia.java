@@ -184,5 +184,32 @@ public class ConexionCinthia {
         }
         return IDExpediente;
     }
+    public boolean AltaEstudianteLogin(Estudiante mEstudiante) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Login "
+                    + "values (null, '" + mEstudiante.getNC() + "',"
+                    + "'" + mEstudiante.getNombre() + "','"
+                    +  mEstudiante.getNC() + "', 'Estudiante'" + ");");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean AltaEstudianteExpediente(Estudiante mEstudiante) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Expediente "
+                    + "values (null, '001_" + mEstudiante.getNC() + "', 'Expediente_" +
+                            mEstudiante.getNC() + "');");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
