@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Conexiones;
 
 /**
  *
  * @author eduardogarcia
  */
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,6 +18,7 @@ import javax.swing.JOptionPane;
 import Clases.*;
 
 public class ConexionCinthia {
+
     public Connection conexion;
     ResultSet rs = null;
     Statement statement = null;
@@ -41,6 +40,7 @@ public class ConexionCinthia {
             return false;
         }
     }
+
     public void desconectar() {
         try {
             this.conexion.close();
@@ -48,50 +48,50 @@ public class ConexionCinthia {
             System.err.println(e.getMessage());
         }
     }
-    
-    public boolean AltaEstudianteBasico(String Nombre, String Carrera) {
+
+    public boolean AltaEstudianteBasico(Estudiante mEstudiante) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
             consulta.execute("insert into Estudiante "
-                    + "values (null,'" + Nombre + "',"
-                    + "'" + Carrera + "',"
-                    + "null , null);");
+                    + "values (null,'" + mEstudiante.getNombre() + "',"
+                    + "'" + mEstudiante.getCarrera() + "',"
+                    + "null , null," + mEstudiante.getNC() + ");");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
     public boolean EliminarEstudiante(Estudiante mEstudiante) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
             consulta.execute("delete from Estudiante "
-                    + " where idEstudiante = " + mEstudiante.getId_Estudiante()+ ";");
+                    + " where NC = " + mEstudiante.getNC() + ";");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    public boolean ModificarEstudiante(int Id_Estudiante, String Nombre, String Carrera) {
+
+    public boolean ModificarEstudiante(String NC, String Nombre, String Carrera) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
             consulta.execute("update Estudiante set "
-                    + "Nombre = '" + Nombre+ "'," 
+                    + "Nombre = '" + Nombre + "',"
                     + "Carrera = '" + Carrera + "'"
-                    + " where idEstudiante = " + Id_Estudiante + ";");
+                    + " where NC = '" + NC + "';");
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e);
             return false;
         }
     }
-    
+
     public ArrayList ConsultarEstudiantes() {
         ArrayList mListaEstudiantes = new ArrayList();
         Estudiante mEstudiante = null;
@@ -108,6 +108,7 @@ public class ConexionCinthia {
                 mEstudiante.setCarrera(resultado.getString("Carrera"));
                 mEstudiante.setId_Expediente(resultado.getInt("Expediente_idExpediente"));
                 mEstudiante.setId_Asesor(resultado.getInt("Asesor_idAsesor"));
+                mEstudiante.setNC(resultado.getString("NC"));
                 mListaEstudiantes.add(mEstudiante);
             }
         } catch (Exception e) {
@@ -115,7 +116,7 @@ public class ConexionCinthia {
         }
         return mListaEstudiantes;
     }
-    
+
     public ArrayList ConsultaNombresAsesores() {
         ArrayList mListaNombresAsesores = new ArrayList();
         Statement consulta;
@@ -132,7 +133,7 @@ public class ConexionCinthia {
         }
         return mListaNombresAsesores;
     }
-    
+
     public ArrayList ConsultaNombresExpedientes() {
         ArrayList mListaNombresExpedientes = new ArrayList();
         Statement consulta;
@@ -149,7 +150,7 @@ public class ConexionCinthia {
         }
         return mListaNombresExpedientes;
     }
-    
+
     public int ConsultarIDAsesores(String NombreAsesor) {
         Statement consulta;
         ResultSet resultado;
@@ -183,5 +184,81 @@ public class ConexionCinthia {
         }
         return IDExpediente;
     }
+    public int ConsultarIDExpedienteUltimo() {
+        Statement consulta;
+        ResultSet resultado;
+        int IDExpediente = 0;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT MAX(idExpediente) FROM Expediente;");
+            while (resultado.next()) {
+                IDExpediente = resultado.getInt("MAX(idExpediente)");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return IDExpediente;
+    }
     
+    public boolean ModificarExpedienteEstudiante(int idEstudiante, int idExpediente) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("update Estudiante set "
+                    + "Expediente_idExpediente = " + idExpediente 
+                    + " where idEstudiante = " + idEstudiante + ";");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
+            return false;
+        }
+        //update Estudiante set Expediente_idExpediente = 11 where idEstudiante = 12
+    }
+    
+    public boolean AltaEstudianteLogin(Estudiante mEstudiante) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Login "
+                    + "values (null, '" + mEstudiante.getNC() + "',"
+                    + "'" + mEstudiante.getNombre() + "','"
+                    +  mEstudiante.getNC() + "', 'Estudiante'" + ");");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean AltaEstudianteExpediente(Estudiante mEstudiante) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Expediente "
+                    + "values (null, '001_" + mEstudiante.getNC() + "', 'Expediente_" +
+                            mEstudiante.getNC() + "');");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public int ConsultarIDAlumnos(String NC) {
+        Statement consulta;
+        ResultSet resultado;
+        int IDAlumno = 0;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT idEstudiante from Estudiante where NC = '" + NC + "';");
+            while (resultado.next()) {
+                IDAlumno = resultado.getInt("idEstudiante");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return IDAlumno;
+    }
+
 }

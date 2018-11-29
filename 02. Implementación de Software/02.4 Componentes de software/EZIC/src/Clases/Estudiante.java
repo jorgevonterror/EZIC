@@ -10,8 +10,8 @@ package Clases;
  * @author eduardogarcia
  */
 public class Estudiante {
-    int id_Estudiante, id_Expediente, id_Asesor;
-    String Nombre, Carrera;
+    private int id_Estudiante, id_Expediente, id_Asesor;
+    private String Nombre, Carrera, NC;
     
     public Estudiante() {
         id_Estudiante = 0; 
@@ -19,6 +19,7 @@ public class Estudiante {
         id_Asesor = 0;
         Nombre = "";
         Carrera = "";
+        NC = "";
     }
 
     public int getId_Estudiante() {
@@ -59,6 +60,14 @@ public class Estudiante {
 
     public void setCarrera(String Carrera) {
         this.Carrera = Carrera;
+    }
+
+    public String getNC() {
+        return NC;
+    }
+
+    public void setNC(String NC) {
+        this.NC = NC;
     }
     
     

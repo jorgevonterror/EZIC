@@ -6,6 +6,7 @@
 package IF_Estudiante;
 
 import Clases.PDF.*;
+import Formularios.*;
 import Conexiones.*;
 import java.awt.Desktop;
 import java.awt.Image;
@@ -29,7 +30,7 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
     /**
      * Creates new form IF_SubirDocumentoEstudiante
      */
-    
+    FRM_Login mFL = new FRM_Login();
     ConexionEduardo mCE = new ConexionEduardo();
     Tabla_PdfVO tpdf = new Tabla_PdfVO();
     String ruta_archivo = "";
@@ -44,8 +45,6 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
     
     public IF_SubirDocumentoEstudiante() {
         initComponents();
-        LlenarComboCarrera();
-        LlenarComboEstudiantes();
     }
 
     /**
@@ -60,14 +59,8 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         TXTRuta = new javax.swing.JTextField();
         TXTTitulo = new javax.swing.JTextField();
-        TXTTipo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         BTN_SubirDoc = new javax.swing.JButton();
-        CB_Expedientes = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        CB_Estudiantes = new javax.swing.JComboBox<>();
 
         setBorder(null);
 
@@ -92,18 +85,12 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Título");
 
-        jLabel2.setText("Tipo");
-
         BTN_SubirDoc.setText("Subir");
         BTN_SubirDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTN_SubirDocActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Expediente");
-
-        jLabel4.setText("Estudiante");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,44 +99,27 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TXTTitulo)
-                            .addComponent(TXTTipo)
-                            .addComponent(CB_Expedientes, 0, 338, Short.MAX_VALUE)
-                            .addComponent(CB_Estudiantes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TXTRuta)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(230, 230, 230)
-                        .addComponent(BTN_SubirDoc)))
+                        .addComponent(BTN_SubirDoc))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TXTTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TXTRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(211, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(TXTTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TXTTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(CB_Expedientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(CB_Estudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(156, 156, 156)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(TXTRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,12 +138,10 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de archivos pdf(*.pdf)", "pdf");
-        
         JFileChooser archivo = new JFileChooser();
         archivo.addChoosableFileFilter(filtro);
         archivo.setDialogTitle("Abrir Archivo");
         int ventana = archivo.showOpenDialog(null);
-        
         if(ventana == JFileChooser.APPROVE_OPTION) {
             File file = archivo.getSelectedFile();
             TXTRuta.setText(String.valueOf(file));
@@ -188,18 +156,18 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
     private void BTN_SubirDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SubirDocActionPerformed
         // TODO add your handling code here:
         String Titulo = TXTTitulo.getText();
-        String Tipo = TXTTipo.getText();
+        String Tipo = "PDF";
         
         String Ruta = TXTRuta.getText();
         sql s = new sql();
         int codigo = s.auto_increment("SELECT MAX(idDocumento) FROM Documento;");
         File ruta = new File(TXTRuta.getText());
-        if (Titulo.trim().length() != 0 && TXTRuta.getText().trim().length() != 0 && !"Ninguno".equals(CB_Expedientes.getSelectedItem().toString()) && !"Ninguno".equals(CB_Estudiantes.getSelectedItem().toString())) {
+        if (Titulo.trim().length() != 0 && TXTRuta.getText().trim().length() != 0 ) {
 
             guardar_pdf(idDocumento, Titulo, Tipo, ruta);
             if (mCE.conectar()) {
-                idExpediente = mCE.ConsultarIDExpediente(CB_Expedientes.getSelectedItem().toString());
-                idEstudiante = mCE.ConsultarIDAlumnos(CB_Estudiantes.getSelectedItem().toString());
+                idEstudiante = mCE.ConsultarIDAlumnos(mFL.Usuario);
+                idExpediente = mCE.ConsultarIDExpediente("Expediente_"+mFL.Usuario);
                 idUltimoDoc = mCE.ConsultarIDUltimoDoc();
                 Status = "No revisado";
                 mCE.ModificarDocumentos(idUltimoDoc, idExpediente, idEstudiante, Status);
@@ -211,9 +179,6 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
             TXTRuta.setText("");
             //activa_boton(false, false, false);
             TXTTitulo.setText("");
-            TXTTipo.setText("");
-            CB_Estudiantes.setSelectedItem("Ninguno");
-            CB_Expedientes.setSelectedItem("Ninguno");
             JOptionPane.showMessageDialog(null, "Archivo subido con exito");
         } else {
             JOptionPane.showMessageDialog(null, "Rellenar todo los campos");
@@ -239,63 +204,14 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
             po.setArchivopdf(null);
             JOptionPane.showMessageDialog(null, "Error al agregar archivo pdf "+ex.getMessage());
         }
-        //po.setExpediente(Expediente);
-        //po.setEstudiante(Estudiante);
         pa.Agregar_PdfVO(po);
-    }
-    
-    public void LlenarComboCarrera() {
-        CB_Expedientes.addItem("Ninguno");
-
-        if (mCE.conectar()) {
-            ArrayList mArrayList = new ArrayList();
-            mArrayList = mCE.ConsultaNombreExpedientes();
-            if (mArrayList != null) {
-
-                for (int i = 0; i < mArrayList.size(); i++) {
-                    CB_Expedientes.addItem(mArrayList.get(i).toString());
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(null, "No tiene expedientes Dados de Alta");
-            }
-            mCE.desconectar();
-        } else {
-            JOptionPane.showMessageDialog(null, "No conectado a la BD");
-        }
-    }
-    public void LlenarComboEstudiantes() {
-        CB_Estudiantes.addItem("Ninguno");
-
-        if (mCE.conectar()) {
-            ArrayList mArrayList = new ArrayList();
-            mArrayList = mCE.ConsultarAlumnosEspecificosConAsig();
-            if (mArrayList != null) {
-
-                for (int i = 0; i < mArrayList.size(); i++) {
-                    CB_Estudiantes.addItem(mArrayList.get(i).toString());
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(null, "No tiene expedientes Dados de Alta");
-            }
-            mCE.desconectar();
-        } else {
-            JOptionPane.showMessageDialog(null, "No conectado a la BD");
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_SubirDoc;
-    private javax.swing.JComboBox<String> CB_Estudiantes;
-    private javax.swing.JComboBox<String> CB_Expedientes;
     private javax.swing.JTextField TXTRuta;
-    private javax.swing.JTextField TXTTipo;
     private javax.swing.JTextField TXTTitulo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

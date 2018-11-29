@@ -157,7 +157,7 @@ public class ConexionEduardo {
         return mListaAsesores;
     }
     
-    public ArrayList ConsultarAlumnos(int idAsesor, String Carrera, String Tipo) {
+    public ArrayList ConsultarAlumnos(int idAsesor, String Carrera, String Tipo, String NC) {
         ArrayList mListaAlumnos = new ArrayList();
         Estudiante mEstudiante = null;
         Statement consulta;
@@ -166,12 +166,12 @@ public class ConexionEduardo {
         try {
             consulta = conexion.createStatement();
             if ("Sin asesor".equals(Tipo)) {
-                resultado = consulta.executeQuery("SELECT * from Estudiante where Carrera = '"+ Carrera +"' and Asesor_idAsesor is null;");
+                resultado = consulta.executeQuery("SELECT * from Estudiante where Carrera = '" + Carrera + "' and Asesor_idAsesor is null;");
             } else {
                 if ("Cualquiera".equals(Tipo)) {
-                    resultado = consulta.executeQuery("SELECT * from Estudiante where Carrera = '"+ Carrera +"';");
+                    resultado = consulta.executeQuery("SELECT * from Estudiante where Carrera = '" + Carrera + "';");
                 } else {
-                    resultado = consulta.executeQuery("SELECT * from Estudiante where Asesor_idAsesor = '" + idAsesor + "' and Carrera = '" + Carrera + "';");
+                    resultado = consulta.executeQuery("SELECT * from Estudiante where Asesor_idAsesor = '" + idAsesor + "' and Carrera = '" + Carrera + "' and NC = '" + NC + "';");
                 }
                 
             }           
@@ -182,6 +182,7 @@ public class ConexionEduardo {
                 mEstudiante.setCarrera(resultado.getString("Carrera"));
                 mEstudiante.setId_Expediente(resultado.getInt("Expediente_idExpediente"));
                 mEstudiante.setId_Asesor(resultado.getInt("Asesor_idAsesor"));
+                mEstudiante.setNC(resultado.getString("NC"));
 
                 mListaAlumnos.add(mEstudiante);
             }
@@ -207,6 +208,7 @@ public class ConexionEduardo {
                 mEstudiante.setCarrera(resultado.getString("Carrera"));
                 mEstudiante.setId_Expediente(resultado.getInt("Expediente_idExpediente"));
                 mEstudiante.setId_Asesor(resultado.getInt("Asesor_idAsesor"));
+                mEstudiante.setNC(resultado.getString("NC"));
 
                 mListaAlumnos.add(mEstudiante);
             }
@@ -418,14 +420,14 @@ public class ConexionEduardo {
         }
         return mListaAlumnos;
     }
-    public int ConsultarIDAlumnos(String NombreAlumno) {
+    public int ConsultarIDAlumnos(String NC) {
         Statement consulta;
         ResultSet resultado;
         int IDAlumno = 0;
 
         try {
             consulta = conexion.createStatement();
-            resultado = consulta.executeQuery("SELECT idEstudiante from Estudiante where Nombre = '" + NombreAlumno + "';");
+            resultado = consulta.executeQuery("SELECT idEstudiante from Estudiante where NC = '" + NC + "';");
             while (resultado.next()) {
                 IDAlumno = resultado.getInt("idEstudiante");
             }
