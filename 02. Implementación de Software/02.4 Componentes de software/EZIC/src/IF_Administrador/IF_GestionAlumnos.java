@@ -525,8 +525,6 @@ public class IF_GestionAlumnos extends javax.swing.JInternalFrame {
                         mCC.AltaEstudianteExpediente(mEstudiante);
                         ID_Estudiante = mCC.ConsultarIDAlumnos(mEstudiante.getNC());                       
                         ID_ExpedienteUltimo = mCC.ConsultarIDExpedienteUltimo();
-                        JOptionPane.showMessageDialog(null, ID_Estudiante);
-                        JOptionPane.showMessageDialog(null, ID_ExpedienteUltimo);
                         mCC.ModificarExpedienteEstudiante(ID_Estudiante, ID_ExpedienteUltimo);
                         JOptionPane.showMessageDialog(null, "El estudiante fue guardado con éxito");
                         //CBasesorAlta.setSelectedIndex(0);

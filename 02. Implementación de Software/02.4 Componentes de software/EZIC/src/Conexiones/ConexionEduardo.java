@@ -467,4 +467,54 @@ public class ConexionEduardo {
         }
     }
     //Hasta Aqui para Alta de Documentos
+    public byte[] MandarPDF(String NombreDoc) {
+        Statement consulta;
+        ResultSet resultado;
+        byte[] ArrayBites = null;
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("Select Contenido from Documento where Titulo = '" + NombreDoc + "';");
+            while (resultado.next()) {
+                ArrayBites = resultado.getBytes("Contenido");
+            }
+            return ArrayBites;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
+            return ArrayBites;
+        }
+    }
+    public ArrayList ConsultarDocumentosAlumnos(int idExp) {
+        ArrayList mListaDocAlumnos = new ArrayList();
+
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT Titulo from Documento where Expediente_idExpediente = "+ idExp +";");
+            while (resultado.next()) {
+                mListaDocAlumnos.add(resultado.getString("Titulo"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaDocAlumnos;
+    }
+    public ArrayList ConsultarStatusAlumnos(int idExp) {
+        ArrayList mListaDocAlumnos = new ArrayList();
+
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT Status from Documento where Expediente_idExpediente = "+ idExp +";");
+            while (resultado.next()) {
+                mListaDocAlumnos.add(resultado.getString("Status"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaDocAlumnos;
+    }
 }

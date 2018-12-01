@@ -5,6 +5,16 @@
  */
 package IF_Estudiante;
 
+import Clases.PDF.*;
+import Conexiones.*;
+import Formularios.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 /**
  *
  * @author eduardogarcia
@@ -14,10 +24,72 @@ public class IF_VerDescargarDocEstudiante extends javax.swing.JInternalFrame {
     /**
      * Creates new form IF_VerDescargarDocEstudiante
      */
+    ConexionEduardo mCE = new ConexionEduardo();
+    MostrarPDF mMPDF = new MostrarPDF();
+    FRM_Login mFL = new FRM_Login();
+    int idExp = 0;
+    String nombre;
+    File archivo1, archivo2;
+    OutputStream out;
+    
     public IF_VerDescargarDocEstudiante() {
         initComponents();
+        LlenarComboTitulos();
     }
 
+    public void VerDocumento() {
+        String ArchivoPDF = "PruebaDoc.pdf";
+        boolean correcto = false;
+        boolean SO = true;
+        try {
+            out = new FileOutputStream(ArchivoPDF);
+            if (mCE.conectar()) {
+                String separador = Pattern.quote("(");
+                String[] partes;
+                partes = CBTitulosDoc.getSelectedItem().toString().split(separador);
+                out.write(mCE.MandarPDF(partes[0]));
+                mCE.desconectar();
+                out.close();
+                correcto = true;
+                try {
+
+                    Runtime.getRuntime().exec("open " + ArchivoPDF);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Runtime.getRuntime().exec("start \"\" /max " + ArchivoPDF + "\"");  //pal Windowds
+                }
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    public void LlenarComboTitulos() {
+        if (mCE.conectar()) {
+            ArrayList mArrayList = new ArrayList();
+            ArrayList mArrayListStatus = new ArrayList();
+            idExp = mCE.ConsultarIDExpediente("Expediente_"+mFL.Usuario);
+            mArrayList = mCE.ConsultarDocumentosAlumnos(idExp);
+            mArrayListStatus = mCE.ConsultarStatusAlumnos(idExp);
+            if (mArrayList != null) {
+
+                for (int i = 0; i < mArrayList.size(); i++) {
+                    CBTitulosDoc.addItem(mArrayList.get(i).toString()+"(" + mArrayListStatus.get(i).toString() +")");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No tiene Asesores Dados de Alta");
+            }
+            mCE.desconectar();
+        } else {
+            JOptionPane.showMessageDialog(null, "No conectado a la BD");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,33 +100,56 @@ public class IF_VerDescargarDocEstudiante extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        CBTitulosDoc = new javax.swing.JComboBox<>();
+        BTN_VerDoc = new javax.swing.JButton();
 
         setBorder(null);
 
-        jLabel1.setText("Labelsito");
+        jLabel1.setText("Selecciona un documento para visualizarlo ");
+
+        BTN_VerDoc.setText("Ver");
+        BTN_VerDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_VerDocActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(206, 206, 206)
-                .addComponent(jLabel1)
-                .addContainerGap(394, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CBTitulosDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(BTN_VerDoc))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(201, 201, 201)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CBTitulosDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BTN_VerDoc)
+                .addContainerGap(461, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BTN_VerDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_VerDocActionPerformed
+        // TODO add your handling code here:
+        VerDocumento();
+    }//GEN-LAST:event_BTN_VerDocActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTN_VerDoc;
+    private javax.swing.JComboBox<String> CBTitulosDoc;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

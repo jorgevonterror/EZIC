@@ -179,7 +179,7 @@ public class IF_SubirDocumentoEstudiante extends javax.swing.JInternalFrame {
             TXTRuta.setText("");
             //activa_boton(false, false, false);
             TXTTitulo.setText("");
-            JOptionPane.showMessageDialog(null, "Archivo subido con exito");
+            //JOptionPane.showMessageDialog(null, "Archivo subido con exito");
         } else {
             JOptionPane.showMessageDialog(null, "Rellenar todo los campos");
         }

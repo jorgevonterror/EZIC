@@ -63,6 +63,7 @@ public class PdfDAO {
             //ps.setInt(4, vo.getExpediente());
             //ps.setInt(5, vo.getEstudiante());
             ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Archivo subido con exito");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } catch (Exception ex) {
