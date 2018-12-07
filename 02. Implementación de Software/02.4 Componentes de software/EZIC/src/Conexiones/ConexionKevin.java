@@ -11,6 +11,7 @@ package Conexiones;
  */
 
 import Clases.Asesor;
+import Clases.Estudiante;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -75,6 +76,37 @@ public class ConexionKevin {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    public boolean AltaAsesorLogin(String User, String Pass) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Login "
+                    + "values (null, '" + User + "',"
+                    + "'" + User + "','"
+                    +  Pass + "', 'Asesor'" + ");");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public int ConsultarIDUltimoAsesor() {
+        Statement consulta;
+        ResultSet resultado;
+        int IDAlumno = 0;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select idAsesor from Asesor order by idAsesor DESC limit 1;");
+            while (resultado.next()) {
+                IDAlumno = resultado.getInt("idAsesor");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return IDAlumno;
     }
     
 }

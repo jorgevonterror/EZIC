@@ -7,6 +7,7 @@ package Formularios;
 
 import java.awt.Color;
 import javax.swing.JPanel;
+import IF_Asesor.*;
 
 /**
  *
@@ -24,7 +25,13 @@ public class FRM_Asesor extends javax.swing.JFrame {
         resetColor(new JPanel[]{btn_8}, new JPanel[]{ind_8});
         
         //Acomodamos el formulario en el centro.
+        //Acomodamos el formulario en el centro.
         this.setLocationRelativeTo(null);
+        IF_VerCalificarDocumentacion mVCD = new IF_VerCalificarDocumentacion();
+        IF_EvaluacionEstudiante mEE = new IF_EvaluacionEstudiante();
+        this.Escritorio.add(mVCD);
+        mEE.hide();
+        mVCD.show();
     }
 
     /**
@@ -50,6 +57,7 @@ public class FRM_Asesor extends javax.swing.JFrame {
         btn_8 = new javax.swing.JPanel();
         ind_8 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        Escritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -279,13 +287,18 @@ public class FRM_Asesor extends javax.swing.JFrame {
 
         side_pane.add(btn_8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 230, 60));
 
+        Escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        Escritorio.setSize(new java.awt.Dimension(645, 619));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(side_pane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(631, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -293,7 +306,11 @@ public class FRM_Asesor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(side_pane, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(side_pane, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -341,14 +358,38 @@ public class FRM_Asesor extends javax.swing.JFrame {
         setColor(btn_1);
         ind_1.setOpaque(true);
         resetColor(new JPanel[]{btn_8}, new JPanel[]{ind_8});
+        
+        IF_VerCalificarDocumentacion mVCD = new IF_VerCalificarDocumentacion();
+        IF_EvaluacionEstudiante mEE = new IF_EvaluacionEstudiante();
+        this.Escritorio.add(mVCD);
+        mEE.hide();
+        mVCD.show();
     }//GEN-LAST:event_btn_1MousePressed
 
     private void btn_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MouseClicked
         // TODO add your handling code here:
+        setColor(btn_1);
+        ind_1.setOpaque(true);
+        resetColor(new JPanel[]{btn_8}, new JPanel[]{ind_8});
+        
+        IF_VerCalificarDocumentacion mVCD = new IF_VerCalificarDocumentacion();
+        IF_EvaluacionEstudiante mEE = new IF_EvaluacionEstudiante();
+        this.Escritorio.add(mVCD);
+        mEE.hide();
+        mVCD.show();
     }//GEN-LAST:event_btn_1MouseClicked
 
     private void btn_8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_8MousePressed
         // TODO add your handling code here:
+        setColor(btn_8);
+        ind_8.setOpaque(true);
+        resetColor(new JPanel[]{btn_1}, new JPanel[]{ind_1});
+        
+        IF_VerCalificarDocumentacion mVCD = new IF_VerCalificarDocumentacion();
+        IF_EvaluacionEstudiante mEE = new IF_EvaluacionEstudiante();
+        this.Escritorio.add(mEE);
+        mEE.show();
+        mVCD.hide();
     }//GEN-LAST:event_btn_8MousePressed
 
     private void btn_8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_8MouseReleased
@@ -356,6 +397,12 @@ public class FRM_Asesor extends javax.swing.JFrame {
         setColor(btn_8);
         ind_8.setOpaque(true);
         resetColor(new JPanel[]{btn_1}, new JPanel[]{ind_1});
+        
+        IF_VerCalificarDocumentacion mVCD = new IF_VerCalificarDocumentacion();
+        IF_EvaluacionEstudiante mEE = new IF_EvaluacionEstudiante();
+        this.Escritorio.add(mEE);
+        mEE.show();
+        mVCD.hide();
     }//GEN-LAST:event_btn_8MouseReleased
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -408,6 +455,7 @@ public class FRM_Asesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JPanel btn_1;
     private javax.swing.JPanel btn_8;
     private javax.swing.JPanel ind_1;

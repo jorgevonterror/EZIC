@@ -65,9 +65,11 @@ public class PdfDAO {
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Archivo subido con exito");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            //System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Archivo demasiado pesado");
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            //System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Archivo demasiado pesado");
         } finally {
             try {
                 ps.close();

@@ -517,4 +517,103 @@ public class ConexionEduardo {
         }
         return mListaDocAlumnos;
     }
+    
+    public ArrayList ConsultarAlumnosParaAsesor(int idAsesor, String Carrera) {
+        ArrayList mListaAlumnos = new ArrayList();
+        Estudiante mEstudiante = null;
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT * from Estudiante where Asesor_idAsesor = " + idAsesor + " and Carrera = '" + Carrera + "';");
+          
+            while (resultado.next()) {
+                mEstudiante = new Estudiante();
+                mEstudiante.setId_Estudiante(resultado.getInt("idEstudiante"));
+                mEstudiante.setNombre(resultado.getString("Nombre"));
+                mEstudiante.setCarrera(resultado.getString("Carrera"));
+                mEstudiante.setId_Expediente(resultado.getInt("Expediente_idExpediente"));
+                mEstudiante.setId_Asesor(resultado.getInt("Asesor_idAsesor"));
+                mEstudiante.setNC(resultado.getString("NC"));
+
+                mListaAlumnos.add(mEstudiante);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaAlumnos;
+    }
+    public ArrayList ConsultarTodosAlumnosParaAsesor(int idAsesor) {
+        ArrayList mListaAlumnos = new ArrayList();
+        Estudiante mEstudiante = null;
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT * from Estudiante where Asesor_idAsesor = " + idAsesor + ";");
+          
+            while (resultado.next()) {
+                mEstudiante = new Estudiante();
+                mEstudiante.setId_Estudiante(resultado.getInt("idEstudiante"));
+                mEstudiante.setNombre(resultado.getString("Nombre"));
+                mEstudiante.setCarrera(resultado.getString("Carrera"));
+                mEstudiante.setId_Expediente(resultado.getInt("Expediente_idExpediente"));
+                mEstudiante.setId_Asesor(resultado.getInt("Asesor_idAsesor"));
+                mEstudiante.setNC(resultado.getString("NC"));
+
+                mListaAlumnos.add(mEstudiante);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaAlumnos;
+    }
+    
+    public ArrayList ConsultaCarreraEstudiantesAsignadosAsesor(int idAsesor) {
+        ArrayList mListaCarreras = new ArrayList();
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select Carrera from Estudiante where Asesor_idAsesor = " + idAsesor + " group by Carrera;");
+            while (resultado.next()) {
+                mListaCarreras.add(resultado.getString("Carrera"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaCarreras;
+    }
+    
+    public boolean ModificarEstadoDocumento(String Titulo, String Status) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("update Documento set " +
+                    "Status= '" + Status +"' where Titulo = '"+ Titulo +"';");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
+            return false;
+        }
+    }
+    
+    public boolean AltaEvaluacion(int Puntaje, int idExpediente) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Evaluacion "
+                    + "values (null, "
+                    + "'Cuestionario',"
+                    + "" + Puntaje + ","
+                    + "" + idExpediente + ");");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
