@@ -8,6 +8,7 @@ package IF_Administrador;
 import Clases.*;
 import Conexiones.*;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +29,8 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
     DefaultTableModel TablaConsulta = new DefaultTableModel();
     Asesor mAsesor;
     int ID_Asesor = 0, SelecBaja = 0, ID_AsesorBaja = 0;
+    String NombreLoginAsesor = "";
+    String PassLoginAsesor = "";
     //String SelecBaja = "";
     public IF_GestionAsesores() {
         initComponents();
@@ -624,10 +627,19 @@ public class IF_GestionAsesores extends javax.swing.JInternalFrame {
             if (ValidarCajaNombreAlta() && ValidarCajaPuestoAlta() && ValidarCajaInstitucionAlta()) {
                 if (mCK.conectar()) {
                     mAsesor.setNombre(TXTnom.getText());
+                    String separador = Pattern.quote(" ");
+                    String[] partes;
+                    partes = TXTnom.getText().split(separador);
+                    NombreLoginAsesor = partes[0] + "_" + TXTemp_inst.getText();
                     mAsesor.setPuesto(TXTpuesto.getText());
                     mAsesor.setEmp_Inst(TXTemp_inst.getText());
                     if (mCK.AltaAsesor(mAsesor)) {
-                        JOptionPane.showMessageDialog(null, "Asesor agregado exitosamente");
+                        PassLoginAsesor = String.valueOf(mCK.ConsultarIDUltimoAsesor());
+                        mCK.AltaAsesorLogin(NombreLoginAsesor, PassLoginAsesor);
+                        JOptionPane.showMessageDialog(null, "Asesor agregado exitosamente \n"
+                                + "Usuario: " + NombreLoginAsesor + "\n"
+                                + "Contraseña: " + PassLoginAsesor + "");
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al guardar Asesor");
                     }

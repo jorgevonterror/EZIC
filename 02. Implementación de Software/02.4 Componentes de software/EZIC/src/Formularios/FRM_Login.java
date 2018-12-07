@@ -19,6 +19,7 @@ public class FRM_Login extends javax.swing.JFrame {
     ConexionLuis mCL = new ConexionLuis();
     String Tipo = "";
     public static String Usuario;
+    public static String Pass;
 
     public FRM_Login() {
         initComponents();
@@ -213,6 +214,7 @@ public class FRM_Login extends javax.swing.JFrame {
                             //Asesor
                             JOptionPane.showMessageDialog(rootPane, "BIENVENIDO ");
                             Usuario = TxtUser.getText();
+                            Pass = TxtPassword.getText();
                             this.hide();
                             FRM_Asesor mFRM_Asesor = new FRM_Asesor();
                             mFRM_Asesor.setVisible(true);
