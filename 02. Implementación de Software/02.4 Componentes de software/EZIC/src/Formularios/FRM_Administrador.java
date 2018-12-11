@@ -566,7 +566,19 @@ public class FRM_Administrador extends javax.swing.JFrame {
 
     private void btn_4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MousePressed
         // TODO add your handling code here:
-
+        setColor(btn_4);
+        ind_4.setOpaque(true);
+        resetColor(new JPanel[]{btn_2,btn_1,btn_8,btn_3}, new JPanel[]{ind_2,ind_1,ind_8, ind_3});
+        
+        IF_GestionAlumnos mIFGA = new IF_GestionAlumnos();       
+        IF_GestionAsesores mIFGAs = new IF_GestionAsesores();
+        IF_AsignacionAsesores mIFAA = new IF_AsignacionAsesores();
+        IF_VerDocAdmin mIFVDA = new IF_VerDocAdmin();
+        this.Escritorio.add(mIFVDA);
+        mIFGAs.hide();
+        mIFGA.hide();
+        mIFAA.hide();
+        mIFVDA.show();
     }//GEN-LAST:event_btn_4MousePressed
 
     private void btn_4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MouseReleased
@@ -574,6 +586,16 @@ public class FRM_Administrador extends javax.swing.JFrame {
         setColor(btn_4);
         ind_4.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_1,btn_8,btn_3}, new JPanel[]{ind_2,ind_1,ind_8, ind_3});
+        
+        IF_GestionAlumnos mIFGA = new IF_GestionAlumnos();       
+        IF_GestionAsesores mIFGAs = new IF_GestionAsesores();
+        IF_AsignacionAsesores mIFAA = new IF_AsignacionAsesores();
+        IF_VerDocAdmin mIFVDA = new IF_VerDocAdmin();
+        this.Escritorio.add(mIFVDA);
+        mIFGAs.hide();
+        mIFGA.hide();
+        mIFAA.hide();
+        mIFVDA.show();
 
     }//GEN-LAST:event_btn_4MouseReleased
 

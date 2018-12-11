@@ -56,12 +56,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="CBTitulosDoc">
-<<<<<<< HEAD
-=======
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBTitulosDocActionPerformed"/>
-      </Events>
->>>>>>> 7cfad711093a2f6130de83449cac5e4ab37aeb70
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

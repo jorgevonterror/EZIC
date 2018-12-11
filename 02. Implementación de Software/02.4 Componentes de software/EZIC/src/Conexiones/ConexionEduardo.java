@@ -82,6 +82,24 @@ public class ConexionEduardo {
         return mListaNomAsesores;
     }
     
+    public ArrayList ConsultarAsesoresPorCarrera(String Carrera) {
+        ArrayList mListaNomAsesores = new ArrayList();
+        Statement consulta;
+        ResultSet resultado;
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT Asesor.Nombre FROM Asesor,Estudiante WHERE Carrera = '" + 
+                    Carrera + "' and Asesor_idAsesor = Asesor.idAsesor GROUP by Asesor.Nombre;");
+            while (resultado.next()) {
+                mListaNomAsesores.add(resultado.getString("Nombre"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mListaNomAsesores;
+    }
+    
     public int ConsultaIDAsesor(String Nombre) {
         int IDAsesor = 0;
         Statement consulta;
@@ -98,6 +116,7 @@ public class ConexionEduardo {
         }
         return IDAsesor;
     }
+    
     
     public ArrayList ConsultaInstitucionAsesores() {
         ArrayList mListaInstAsesores = new ArrayList();
