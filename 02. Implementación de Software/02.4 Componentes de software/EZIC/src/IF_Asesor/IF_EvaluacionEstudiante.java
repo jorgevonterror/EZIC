@@ -63,7 +63,7 @@ public final class IF_EvaluacionEstudiante extends javax.swing.JInternalFrame {
     String[] Valor = {
         "5", "10", "10", "10", "5", "5", "10", "10", "5", "15", "5", "10"
     };
-    String[] Evaluacion = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
+    String[] Evaluacion = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
     JComboBox jcb;
 
     public IF_EvaluacionEstudiante() {
@@ -78,9 +78,9 @@ public final class IF_EvaluacionEstudiante extends javax.swing.JInternalFrame {
         TablaConsultaEst.addColumn("Número de Control");
 
         jcb = new JComboBox(Evaluacion);
+        jcb.setSelectedItem(0);
         TableColumn tc = TBEvaluacion.getColumnModel().getColumn(2);
         TableCellEditor tce = new DefaultCellEditor(jcb);
-        jcb.setSelectedIndex(0);
         tc.setCellEditor(tce);
 
     }
@@ -373,14 +373,19 @@ public final class IF_EvaluacionEstudiante extends javax.swing.JInternalFrame {
                 NTemp = Integer.parseInt(String.valueOf(TBEvaluacion.getModel().getValueAt(i, 2)));
                 SumaPuntaje = SumaPuntaje + NTemp;
             }
-            JOptionPane.showMessageDialog(null, "Evaluación guardada.");
+            //
 
         } catch (NumberFormatException e) {
 
         }
         mCE.conectar();
         idExp = mCE.ConsultarIDExpediente("Expediente_" + NC);
-        mCE.AltaEvaluacion(SumaPuntaje, idExp);
+        if (mCE.AltaEvaluacion(SumaPuntaje, idExp) == true) {
+            //JOptionPane.showMessageDialog(null, "Evaluación guardada.");
+            LimpiarTablaEvaluacion();
+        } else {
+            JOptionPane.showMessageDialog(null, "Evaluación NO guardada.");
+        }
         mCE.desconectar();
     }
 
