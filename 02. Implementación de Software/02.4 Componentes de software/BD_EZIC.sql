@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 26, 2018 at 04:45 PM
+-- Generation Time: Dec 12, 2018 at 07:06 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -39,13 +39,6 @@ CREATE TABLE `Asesor` (
   `Emp_Inst` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `Asesor`
---
-
-INSERT INTO `Asesor` (`idAsesor`, `Nombre`, `Puesto`, `Emp_Inst`) VALUES
-(1, 'Eduardo', 'Docente', 'ITSZN');
-
 -- --------------------------------------------------------
 
 --
@@ -76,14 +69,6 @@ CREATE TABLE `Estudiante` (
   `Asesor_idAsesor` int(11) DEFAULT NULL,
   `NC` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `Estudiante`
---
-
-INSERT INTO `Estudiante` (`idEstudiante`, `Nombre`, `Carrera`, `Expediente_idExpediente`, `Asesor_idAsesor`, `NC`) VALUES
-(1, 'Jorge', 'ISC', NULL, 1, ''),
-(2, 'Kevin', 'ISC', NULL, NULL, '140203');
 
 -- --------------------------------------------------------
 
@@ -129,9 +114,7 @@ CREATE TABLE `Login` (
 --
 
 INSERT INTO `Login` (`idLogin`, `Username`, `Nombre`, `Pass`, `Tipo`) VALUES
-(1, 'Kev', 'Kevin', '1234K', 'Estudiante'),
-(2, 'Chendo', 'Eduardo', '1234C', 'Administrador'),
-(3, 'Jorge', 'Jorge', '1234J', 'Asesor');
+(2, 'Chendo', 'Eduardo', '1234C', 'Administrador');
 
 --
 -- Indexes for dumped tables
@@ -198,19 +181,19 @@ ALTER TABLE `Admin`
 -- AUTO_INCREMENT for table `Asesor`
 --
 ALTER TABLE `Asesor`
-  MODIFY `idAsesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAsesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `Documento`
 --
 ALTER TABLE `Documento`
-  MODIFY `idDocumento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDocumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `Estudiante`
 --
 ALTER TABLE `Estudiante`
-  MODIFY `idEstudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idEstudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `Evaluacion`
@@ -222,13 +205,13 @@ ALTER TABLE `Evaluacion`
 -- AUTO_INCREMENT for table `Expediente`
 --
 ALTER TABLE `Expediente`
-  MODIFY `idExpediente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idExpediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Login`
 --
 ALTER TABLE `Login`
-  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
